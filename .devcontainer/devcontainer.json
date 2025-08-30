@@ -1,0 +1,33 @@
+{
+    "name": "Node.js & TypeScript",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/schlich/devcontainer-features/playwright:0": {}
+    },
+
+    "initializeCommand": "ssh-add",
+
+    "forwardPorts": [3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010],
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "patbenatar.advanced-new-file",
+                "hollowtree.vue-snippets",
+                "Vue.volar",
+                "EditorConfig.EditorConfig",
+                "ms-azuretools.vscode-docker",
+                "ms-azuretools.vscode-containers",
+                "Vercel.turbo-vsc",
+                "humao.rest-client",
+                "wenfangdu.snippet-generator",
+                "bradlc.vscode-tailwindcss",
+                "vitest.explorer",
+                "ms-playwright.playwright"
+            ]
+        }
+    }
+}
