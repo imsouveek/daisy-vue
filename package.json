@@ -1,0 +1,42 @@
+{
+    "name": "nuxt-daisy-vue",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "test": "turbo run test",
+        "test:e2e": "turbo run test:e2e",
+        "lint": "turbo run lint",
+        "format": "prettier --write .",
+        "docs:dev": "pnpm --filter docs docs:dev",
+        "docs:build": "pnpm --filter docs docs:build",
+        "docs:preview": "pnpm --filter docs docs:preview",
+        "docs:build-netlify": "pnpm lib:build && pnpm docs:build",
+        "play:vue": "pnpm --filter ./packages/library dev",
+        "play:nuxt": "pnpm --filter ./packages/nuxt-module dev",
+        "story:dev": "pnpm --filter daisy-vue story:dev",
+        "story:build": "pnpm --filter daisy-vue story:build",
+        "lib:build": "pnpm --filter daisy-vue build",
+        "nuxt-module:dev-prepare": "pnpm --filter ./packages/nuxt-module dev:prepare",
+        "nuxt-module:prepack": "pnpm --filter ./packages/nuxt-module prepack",
+        "component:new": "hygen component new && pnpm lib:build",
+        "directive:new": "hygen directive new && pnpm lib:build",
+        "changeset": "npx changeset",
+        "changeset:version": "npx changeset version",
+        "changeset:publish": "pnpm lib:build && pnpm nuxt-module:prepack && npx changeset publish"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.11.0",
+    "dependencies": {
+        "prettier": "^3.6.2",
+        "turbo": "^2.5.6"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.29.6",
+        "hygen": "^6.2.11"
+    }
+}
