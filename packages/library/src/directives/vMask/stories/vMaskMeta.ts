@@ -45,7 +45,6 @@ export const getMeta = (): VMaskMeta => ({
         `
     }),
     argTypes: {
-        /** Mask Type */
         mask: {
             control: { type: 'select' },
             options: vMaskTypes,
@@ -55,7 +54,6 @@ export const getMeta = (): VMaskMeta => ({
                 defaultValue: { summary: 'square' }
             }
         },
-        /** Mask Modifier */
         modifier: {
             control: { type: 'select' },
             options: vMaskMods,

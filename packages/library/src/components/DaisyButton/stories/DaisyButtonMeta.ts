@@ -58,20 +58,13 @@ export const getMeta = (): DaisyButtonMeta => ({
         }
     },
     argTypes: {
-        /** Button color based on visual intent / theme token */
         color: {
             control: { type: 'select' },
-            options: daisyButtonColors,
-            description: 'Button color based on visual intent / theme token',
-            table: {
-                defaultValue: { summary: 'primary' }
-            }
+            options: daisyButtonColors
         },
         size: {
             control: { type: 'select' },
-            options: daisyButtonSizes,
-            description: 'Button size',
-            table: { defaultValue: { summary: 'md' } }
+            options: daisyButtonSizes
         },
         disabled: {
             control: 'boolean',
@@ -82,46 +75,14 @@ export const getMeta = (): DaisyButtonMeta => ({
             control: 'text',
             description: 'Button label'
         },
-        wide: {
-            control: 'boolean',
-            description: 'Wide button',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        block: {
-            control: 'boolean',
-            description: 'Block button',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        square: {
-            control: 'boolean',
-            description: 'Square button',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        circle: {
-            control: 'boolean',
-            description: 'Circle button',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        active: {
-            control: 'boolean',
-            description: 'Active button color',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        soft: {
-            control: 'boolean',
-            description: 'Soft button',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        outline: {
-            control: 'boolean',
-            description: 'Outline button',
-            table: { defaultValue: { summary: 'false' } }
-        },
-        dash: {
-            control: 'boolean',
-            description: 'Dashed outline button',
-            table: { defaultValue: { summary: 'false' } }
-        }
+        wide: { control: 'boolean' },
+        block: { control: 'boolean' },
+        square: { control: 'boolean' },
+        circle: { control: 'boolean' },
+        active: { control: 'boolean' },
+        soft: { control: 'boolean' },
+        outline: { control: 'boolean' },
+        dash: { control: 'boolean' }
     },
     args: {
         label: 'Click Me!'

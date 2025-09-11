@@ -5,15 +5,25 @@ import {
 
 } from 'vue';
 const props = withDefaults(defineProps<{
+  /** Button color based on visual intent / theme token */
   color?: ColorsBrand | ColorsState | 'ghost' | 'link'
+  /** Button size */
   size?: Sizes,
+  /** Wide button */
   wide?: boolean,
+  /** Block button */
   block?: boolean,
+  /** Square button */
   square?: boolean,
+  /** Circle button */
   circle?: boolean,
+  /** Active button color */
   active?: boolean,
+  /** Soft button color */
   soft?: boolean,
+  /** Outline button */
   outline?: boolean,
+  /** Dashed outline button */
   dash?: boolean,
 }>(), {
   color: 'primary',

@@ -3,8 +3,11 @@ import type { ColorsBrand, ColorsState, Sizes } from '../../globals'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
+  /** Badge color based on visual intent / theme token */
   color?: ColorsBrand | ColorsState | 'ghost'
+  /** Badge size */
   size?: Sizes
+  /** Show badge as an outline */
   outline?: boolean
 }>(), {
   color: 'primary',

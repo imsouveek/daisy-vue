@@ -57,26 +57,16 @@ export const getMeta = (): DaisyBadgeMeta => ({
         }
     },
     argTypes: {
-        /** Badge color based on visual intent / theme token */
         color: {
             control: { type: 'select' },
-            options: daisyBadgeColors,
-            description: 'Badge color based on visual intent / theme token',
-            table: {
-                type: { summary: 'brand|state|ghost|link' },
-                defaultValue: { summary: 'primary' }
-            }
+            options: daisyBadgeColors
         },
         size: {
             control: { type: 'select' },
-            options: daisyBadgeSizes,
-            description: 'Badge size',
-            table: { defaultValue: { summary: 'md' } }
+            options: daisyBadgeSizes
         },
         outline: {
-            control: 'boolean',
-            description: 'Show badge as an outline',
-            table: { defaultValue: { summary: 'false' } }
+            control: 'boolean'
         },
         label: {
             control: 'text',

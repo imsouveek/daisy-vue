@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { ColorsBrand, ColorsState, Sizes } from '../../globals'
-import { types } from './config'
+import type { DaisyLoadingTypes } from './config'
 
 const props = withDefaults(
   defineProps<{
-    type?: (typeof types)[number]
+    /** Loader type */
+    type?: DaisyLoadingTypes,
+    /** Loader size */
     size?: Sizes
+    /** Loader color based on visual intent / theme token */
     color?: ColorsBrand | ColorsState
   }>(),
   {

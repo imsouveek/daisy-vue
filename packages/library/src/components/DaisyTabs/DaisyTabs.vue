@@ -3,6 +3,7 @@ import { ref, watch, provide, computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
+    /** Tab type */
     type?: 'bordered' | 'boxed' | 'lifted'
   }>(),
   {

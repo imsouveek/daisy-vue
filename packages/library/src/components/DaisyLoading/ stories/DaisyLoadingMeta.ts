@@ -5,6 +5,7 @@ import { types } from '../config'
 
 export const daisyLoadingColors = [...colorsBrand, ...colorsState, undefined]
 export const daisyLoadingSizes = sizes
+export const daisyLoadingTypes = types
 
 export type DaisyLoadingArgs = ComponentPropsAndSlots<typeof DaisyLoading>
 
@@ -24,35 +25,17 @@ export const getMeta = (): DaisyLoadingMeta => ({
         }
     },
     argTypes: {
-        /** Loader color based on visual intent / theme token */
         color: {
             control: { type: 'select' },
-            options: daisyLoadingColors,
-            description: 'Loader color based on visual intent / theme token',
-            table: {
-                type: { summary: daisyLoadingColors.join('|') },
-                defaultValue: { summary: 'primary' }
-            }
+            options: daisyLoadingColors
         },
-        /** Loader size */
         size: {
             control: { type: 'select' },
-            options: daisyLoadingSizes,
-            description: 'Loader size',
-            table: {
-                type: { summary: daisyLoadingSizes.join('|') },
-                defaultValue: { summary: 'md' }
-            }
+            options: daisyLoadingSizes
         },
-        /** Loader type */
         type: {
             control: { type: 'select' },
-            options: types,
-            description: 'Loader type',
-            table: {
-                type: { summary: types.join('|') },
-                defaultValue: { summary: 'spinner' }
-            }
+            options: daisyLoadingTypes
         }
     },
     args: {

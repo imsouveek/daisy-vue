@@ -62,9 +62,7 @@ export const getMeta = (): DaisyTabsMeta => ({
     argTypes: {
         type: {
             control: { type: 'select' },
-            options: types,
-            description: 'Tab type',
-            table: { defaultValue: { summary: 'lifted' } }
+            options: types
         },
         tabOneText: {
             control: { type: 'text' },
