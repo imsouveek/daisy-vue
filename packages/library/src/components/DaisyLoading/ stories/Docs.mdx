@@ -1,0 +1,45 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+;<Meta title="Components/DaisyLoading/Docs" />
+
+# DaisyLoading
+
+<Meta of={PrimaryStory} />
+
+A loading component that uses animation to indicate that something is loading. This component
+uses the [Daisy UI Loading component](https://daisyui.com/components/loading/) and exposes most of the
+available options.
+
+<Canvas of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+The style of the laoder can be modified through various properties
+
+### Colors
+
+Use theme colors `primary`, `secondary`, etc. or brand colors such as `success`, `error` to control the color of the loader
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Colors} />
+</div>
+
+### Sizes
+
+Size of the loader can be controlled through this prop
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Sizes} />
+</div>
+
+### Types
+
+Loaders can also use different animations
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Types} />
+</div>

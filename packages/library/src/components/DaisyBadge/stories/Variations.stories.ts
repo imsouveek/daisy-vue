@@ -104,7 +104,7 @@ export const Variants: DaisyBadgeStory = {
         },
         template: `
             <div style="width: 896px;" class=" m-4 flex flex-col items-center">
-                <DaisyBadge outlined v-bind="args">24</DaisyBadge>
+                <DaisyBadge outline v-bind="args">24</DaisyBadge>
             </div>
             <div style="width: 896px;" class=" flex flex-col items-center">
                 <DaisyBadge v-bind="args"/>

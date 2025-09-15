@@ -62,8 +62,9 @@ export const Sizes: DaisyLoadingStory = {
     render: (args) => ({
         components: { DaisyLoading },
         setup() {
+            const { size, ...otherArgs } = args
             return {
-                args,
+                otherArgs,
                 daisyLoadingSizes
             }
         },
@@ -71,7 +72,8 @@ export const Sizes: DaisyLoadingStory = {
             <div class="grid grid-cols-5 gap-4">
                 <div v-for="size in daisyLoadingSizes" :key="size" class="flex flex-col items-center">
                     {{ size?.toUpperCase() ?? 'UNDEFINED' }}
-                    <DaisyLoading :size="size" v-bind="args"/>
+                     {{args}}
+                    <DaisyLoading :size="size" v-bind="otherArgs"/>
                 </div>
             </div>
         `

@@ -1,0 +1,45 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+;<Meta title="Components/DaisyBadge/Docs" />
+
+# DaisyBadge
+
+<Meta of={PrimaryStory} />
+
+A badge component for displaying status, counts, or labels. This component
+uses the [Daisy UI Badge component](https://daisyui.com/components/badge/) and exposes most of the
+available options.
+
+<Canvas of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+The style of the badge can be modified through various properties
+
+### Colors
+
+Use theme colors `primary`, `secondary`, etc. or brand colors such as `success`, `error` to control the color of the badge
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Colors} />
+</div>
+
+### Sizes
+
+Size of the badge can be controlled through this prop
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Sizes} />
+</div>
+
+### Other Variations
+
+Badges can also be shown as empty or without any text
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Variants} />
+</div>

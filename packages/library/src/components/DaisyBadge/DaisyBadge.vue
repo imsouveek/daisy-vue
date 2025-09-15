@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   color: 'primary',
   size: 'md',
-  outline: true
+  outline: false
 })
 
 const colorClass = computed(() => {

@@ -1,0 +1,27 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+;<Meta title="Components/DaisyTabs/Docs" />
+
+# DaisyTabs
+
+<Meta of={PrimaryStory} />
+
+A tab component for displaying information in a tabbed format. This component
+uses the [Daisy UI Tab component](https://daisyui.com/components/tab/) and exposes most of the
+available options.
+
+<Canvas of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+The tab style can be changed through the types property
+
+### Types
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+    <Story of={VariationsStories.Types} />
+</div>
