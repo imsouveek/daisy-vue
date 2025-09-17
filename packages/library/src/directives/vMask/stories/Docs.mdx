@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks'
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
 import * as PrimaryStory from './Playground.stories'
 import * as VariationsStories from './Variations.stories'
 
@@ -12,7 +12,10 @@ A mask directive to crop edges of images to common shapes. It
 uses the [Daisy UI Mask component](https://daisyui.com/components/mask/) and exposes most of the
 available options.
 
-<Canvas of={PrimaryStory.Playground} />
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
 
 <Controls />
 
@@ -22,6 +25,6 @@ The mask can be modified using type and modifier
 
 ### Variations
 
-<div className="p-8 border-1 rounded border-gray-200 shadow-sm">
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.AllMasks} />
 </div>

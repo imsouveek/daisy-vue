@@ -6,7 +6,7 @@ import {DaisyButton} from 'daisy-vue'
 
 ## Without any props
 
-<DaisyButton/>
+<DaisyButton disabled>Click Me!</DaisyButton>
 
 ```vue
 <DaisyButton />

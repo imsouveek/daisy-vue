@@ -19,8 +19,8 @@
             "require": "./src/components/components.ts"
         },
         "./style.css": {
-            "import": "./dist/style.css",
-            "require": "./dist/style.css"
+            "import": "./dist/lib.css",
+            "require": "./dist/lib.css"
         },
         "./js": {
             "types": "./dist/types/main.d.ts",

@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks'
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
 import * as PrimaryStory from './Playground.stories'
 import * as VariationsStories from './Variations.stories'
 
@@ -12,7 +12,10 @@ A flexible button component for to allow users to take action or make choices. T
 uses the [Daisy UI Button component](https://daisyui.com/components/button/) and exposes most of the
 available options.
 
-<Canvas of={PrimaryStory.Playground} />
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
 
 <Controls />
 
@@ -24,7 +27,7 @@ The style of the button can be modified through various properties
 
 Use theme colors `primary`, `secondary`, etc. or brand colors such as `success`, `error` to control the color of the button
 
-<div className="p-8 border-1 rounded border-gray-200 shadow-sm dark:bg-slate-800">
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.Colors} />
 </div>
 
@@ -32,7 +35,7 @@ Use theme colors `primary`, `secondary`, etc. or brand colors such as `success`,
 
 Size of the button can be controlled through this prop
 
-<div className="p-8 border-1 rounded border-gray-200 shadow-sm dark:bg-slate-800">
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.Sizes} />
 </div>
 
@@ -40,6 +43,6 @@ Size of the button can be controlled through this prop
 
 Buttons support a number of variations, such as disabled, square or circle shape, outline or dashed buttons, etc
 
-<div className="p-8 border-1 rounded border-gray-200 shadow-sm dark:bg-slate-800">
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.Variants} />
 </div>

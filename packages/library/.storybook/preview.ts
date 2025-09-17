@@ -1,8 +1,6 @@
 import '../src/assets/main.css'
 import type { Preview } from '@storybook/vue3-vite'
 import { Globals } from 'storybook/internal/csf'
-// import { themes } from 'storybook/internal/theming'
-import DocumentationTemplate from './DocumentationTemplate.mdx'
 import '../src/assets/main.css'
 
 const preview: Preview = {
