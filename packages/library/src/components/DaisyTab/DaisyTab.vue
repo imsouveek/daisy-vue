@@ -1,28 +1,41 @@
 <script setup lang="ts">
-import { inject, ref, computed } from 'vue'
+import { inject, onMounted } from 'vue'
 
 const props = defineProps<{
   /** Tab name */
-  name: string
+  value: string
 }>()
 
-const registerTab = inject('DaisyVueTabsComponentRegisterTab', (name: string) => { })
-registerTab(props.name)
+defineSlots<{
+  /** Slot for Icon */
+  icon: string,
+  /** Slot for tab content */
+  default: string
+}>()
 
-const tabsData = inject(
-  'DaisyVueTabsData',
-  ref({
-    activeTab: ''
-  })
-)
+const tabs = inject<{
+  groupName: string
+  value: string | undefined
+  select: (val: string) => void
+}>('DaisyVueTabsGroup')!
 
-const isActive = computed(() => tabsData.value.activeTab === props.name)
+// if no tab selected yet, first one claims it
+onMounted(() => {
+  if (!tabs.value) {
+    tabs.select(props.value)
+  }
+})
+
 </script>
 
 <template>
-  <div role="tabpanel" class="tabpanel" :class="{
-    hidden: !isActive
-  }">
+  <label class="tab">
+    <input type="radio" :name="tabs.groupName" :value="value" :checked="tabs.value === value"
+      @change="tabs.select(value)" />
+    <slot name="icon"></slot>
+    {{ value }}
+  </label>
+  <div class="tab-content bg-base-100 border-base-300 p-6" role="tabpanel">
     <slot></slot>
   </div>
 </template>

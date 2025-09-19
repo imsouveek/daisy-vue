@@ -15,6 +15,11 @@ const props = withDefaults(defineProps<{
   outline: false
 })
 
+defineSlots<{
+  /** Slot for badge text */
+  default: string
+}>()
+
 const colorClass = computed(() => {
   return {
     primary: 'badge-primary',

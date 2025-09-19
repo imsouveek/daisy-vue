@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import { initThemeSwitcher } from './theme-switcher-support'
 
 import DefaultTheme from 'vitepress/theme'
+import './style.css'
 import 'daisy-vue/style.css'
 
 export default {

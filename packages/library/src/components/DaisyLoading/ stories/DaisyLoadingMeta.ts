@@ -14,7 +14,17 @@ export type DaisyLoadingMeta = Meta<DaisyLoadingArgs>
 export const getMeta = (): DaisyLoadingMeta => ({
     title: 'Components/DaisyLoading',
     component: DaisyLoading,
-
+    render: (args) => ({
+        components: { DaisyLoading },
+        setup() {
+            return { args }
+        },
+        template: `
+            <div style="width: 896px;" class=" flex flex-col items-center">
+                <DaisyLoading v-bind="args" />
+            </div>
+        `
+    }),
     parameters: {
         layout: 'centered',
         docs: {

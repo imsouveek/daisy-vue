@@ -1,70 +1,59 @@
 <script setup lang="ts">
-import { ref, watch, provide, computed } from 'vue'
+import { computed, provide } from 'vue'
+import type { Types, Positions } from './config'
+import type { Sizes } from '../../globals'
 
-const props = withDefaults(
-  defineProps<{
-    /** Tab type */
-    type?: 'bordered' | 'boxed' | 'lifted'
-  }>(),
-  {
-    type: 'lifted'
-  }
-)
+const selected = defineModel<string>()
 
-const tabs = ref([] as string[])
-function registerTab(label: string) {
-  if (tabs.value.includes(label)) return
-  tabs.value.push(label)
-  if (!_activeTab.value) _activeTab.value = label
-}
-provide('DaisyVueTabsComponentRegisterTab', registerTab)
-
-const activeTab = defineModel('activeTab')
-const _activeTab = ref(activeTab.value)
-watch(_activeTab, () => (activeTab.value = _activeTab.value))
-
-const tabsData = computed(() => {
-  return {
-    activeTab: _activeTab.value
-  }
+const props = withDefaults(defineProps<{
+  /** Tab type */
+  type?: Types,
+  /** Tab size */
+  size?: Sizes,
+  /** Tab position */
+  position?: Positions
+}>(), {
+  type: 'lifted',
+  size: 'md'
 })
-provide('DaisyVueTabsData', tabsData)
 
-const classes = computed(() => {
-  return {
-    bordered: 'tabs-border',
-    boxed: 'tabs-box',
-    lifted: 'tabs-lift'
-  }[props.type]
+defineSlots<{
+  /** Each DaisyTab has to be defined here */
+  default: string
+}>()
+
+// unique name for this tab group
+const groupName = `tabs-${Math.random().toString(36).slice(2, 9)}`
+
+provide('DaisyVueTabsGroup', {
+  groupName,
+  get value() {
+    return selected.value
+  },
+  select: (val: string) => (selected.value = val)
 })
+
+const styleClass = computed(() => ({
+  bordered: 'tabs-border',
+  boxed: 'tabs-box',
+  lifted: 'tabs-lift'
+}[props.type]))
+
+const sizeClass = computed(() => ({
+  xs: 'tabs-xs',
+  sm: 'tabs-sm',
+  md: 'tabs-md',
+  lg: 'tabs-lg',
+}[props.size]))
+
+const positionClass = computed(() => ({
+  top: 'tabs-top',
+  bottom: 'tabs-bottom',
+}[props.position]))
 </script>
 
 <template>
-  <div :data-type="type">
-    <div role="tablist" class="tabs" :class="classes">
-      <template v-for="tab in tabs" :key="tab">
-        <button @click="_activeTab = tab" role="tab" class="tab" :aria-label="tab"
-          :class="{ 'tab-active': activeTab === tab }">
-          {{ tab }}
-        </button>
-      </template>
-    </div>
-    <slot></slot>
+  <div role="tablist" class="tabs" :class="[styleClass, sizeClass, positionClass]">
+    <slot />
   </div>
 </template>
-
-<style scoped>
-@reference '../../assets/main.css';
-
-[data-type='lifted'] :deep(.tabpanel) {
-  @apply p-6 rounded-t-none bg-base-100 border-base-300 rounded-box;
-}
-
-[data-type='boxed'] :deep(.tabpanel) {
-  @apply p-6 border-base-300 rounded-box;
-}
-
-[data-type='bordered'] :deep(.tabpanel) {
-  @apply p-6 border-base-300 rounded-box;
-}
-</style>

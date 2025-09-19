@@ -38,6 +38,11 @@ const props = withDefaults(defineProps<{
   dash: false,
 })
 
+defineSlots<{
+  /** Slot for button content */
+  default: string
+}>()
+
 const colorClass = computed(() => {
   return {
     primary: 'btn-primary',

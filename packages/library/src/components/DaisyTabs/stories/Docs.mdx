@@ -2,8 +2,6 @@ import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
 import * as PrimaryStory from './Playground.stories'
 import * as VariationsStories from './Variations.stories'
 
-;<Meta title="Components/DaisyTabs/Docs" />
-
 # DaisyTabs
 
 <Meta of={PrimaryStory} />
@@ -21,10 +19,33 @@ available options.
 
 ## Usage
 
-The tab style can be changed through the types property
+The tabs can be visually styled through various properties
+
+### Sizes
+
+The size property controls the size of the tabs
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Sizes} />
+</div>
 
 ### Types
 
+The type property controls the appearance of the tabs
+
 <div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.Types} />
+</div>
+
+### Positions
+
+The position property controls the placement of the tabs
+
+**Note:** It is not supported to have nested tabs
+with different positions explicitly defined. However, if outer tabs is not explicitly having position set and inner tabs
+have position explicitly set as bottom, then we can have nested tabs with outer tabs positioned at top and inner tabs
+positioned at bottom
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Positions} />
 </div>

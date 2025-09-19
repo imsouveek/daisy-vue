@@ -72,7 +72,6 @@ export const Sizes: DaisyLoadingStory = {
             <div class="grid grid-cols-5 gap-4">
                 <div v-for="size in daisyLoadingSizes" :key="size" class="flex flex-col items-center">
                     {{ size?.toUpperCase() ?? 'UNDEFINED' }}
-                     {{args}}
                     <DaisyLoading :size="size" v-bind="otherArgs"/>
                 </div>
             </div>

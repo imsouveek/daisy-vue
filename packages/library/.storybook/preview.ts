@@ -37,13 +37,14 @@ const preview: Preview = {
             matchers: {
                 color: /(background|color)$/i,
                 date: /Date$/i
-            }
+            },
+            exclude: ['ref', 'ref_for', 'key', 'ref_key', 'class', 'style', '$slots']
         },
         docs: {
             // page: DocumentationTemplate,
             codePanel: false,
             controls: {
-                exclude: ['ref', 'ref_for', 'key', 'ref_key', 'class', 'style', 'default']
+                exclude: ['ref', 'ref_for', 'key', 'ref_key', 'class', 'style', '$slots']
             }
         }
     }

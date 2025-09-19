@@ -1,12 +1,14 @@
 import type { ComponentPropsAndSlots, Meta, StoryObj } from '@storybook/vue3-vite'
 import DaisyTab from '../../DaisyTab/DaisyTab.vue'
 import DaisyTabs from '../DaisyTabs.vue'
-import { types } from '../config'
+import { types, positions } from '../config'
+import { sizes } from '../../../globals'
 
 export type DaisyTabsArgs = ComponentPropsAndSlots<typeof DaisyTabs> & {
     tabOneText?: string
     tabTwoText?: string
     tabThreeText?: string
+    'update:modelValue': string
 }
 
 export type DaisyTabsMeta = Meta<DaisyTabsArgs>
@@ -23,9 +25,9 @@ export const getMeta = (): DaisyTabsMeta => ({
         template: `
             <div style="width: 896px;" class=" flex flex-col items-center">
                 <DaisyTabs v-bind="args">
-                    <DaisyTab name="Tab 1" v-html="args.tabOneText"/>
-                    <DaisyTab name="Tab 2" v-html="args.tabTwoText"/>
-                    <DaisyTab name="Tab 3" v-html="args.tabThreeText"/>
+                    <DaisyTab value="Tab 1">{{args.tabOneText}}</DaisyTab>
+                    <DaisyTab value="Tab 2">{{args.tabTwoText}}</DaisyTab>
+                    <DaisyTab value="Tab 3">{{args.tabThreeText}}</DaisyTab>
                 </DaisyTabs>
             </div>
         `
@@ -37,19 +39,23 @@ export const getMeta = (): DaisyTabsMeta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { tabOneText, tabTwoText, tabThreeText, type } = context.args
+                    const { tabOneText, tabTwoText, tabThreeText, ...tabArgs } = context.args
 
-                    const renderedType = type ? ` type="${type}"` : ''
+                    const renderedProps = Object.keys(tabArgs)
+                        .map((key) => `${key}="${tabArgs[key]}"`)
+                        .join(' ')
+                        .trim()
+
                     return `
                         <template>
-                            <DaisyTabs${renderedType}>
-                                <DaisyTab name="Tab 1">
+                            <DaisyTabs${renderedProps ? ' ' + renderedProps : ''}>
+                                <DaisyTab value="Tab 1">
                                     ${tabOneText}
                                 </DaisyTab>
-                                <DaisyTab name="Tab 2">
+                                <DaisyTab value="Tab 2">
                                     ${tabTwoText}
                                 </DaisyTab>
-                                <DaisyTab name="Tab 3">
+                                <DaisyTab value="Tab 3">
                                     ${tabThreeText}
                                 </DaisyTab>
                             </DaisyTabs>
@@ -63,6 +69,23 @@ export const getMeta = (): DaisyTabsMeta => ({
         type: {
             control: { type: 'select' },
             options: types
+        },
+        size: {
+            control: { type: 'select' },
+            options: sizes
+        },
+        position: {
+            control: { type: 'radio' },
+            options: positions
+        },
+        modelValue: {
+            name: 'value',
+            description: 'Currently selected tab',
+            control: { type: 'text' }
+        },
+        'update:modelValue': {
+            name: 'update:value',
+            description: 'Emitted when the active tab changes'
         },
         tabOneText: {
             control: { type: 'text' },
