@@ -1,5 +1,13 @@
 # docs
 
+## 2.1.1
+
+### Patch Changes
+
+- 4dc1b81: Minor fixes for props descriptions
+- Updated dependencies [4dc1b81]
+    - daisy-vue@1.1.1
+
 ## 2.1.0
 
 ### Minor Changes
