@@ -60,7 +60,7 @@ export const getMeta = (): DaisyBrowserMeta => ({
         },
         label: {
             control: 'text',
-            description: 'Badge label'
+            description: 'Browser content'
         }
     },
     args: {

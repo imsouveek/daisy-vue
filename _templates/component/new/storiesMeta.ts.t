@@ -64,7 +64,7 @@ export const getMeta = (): <%= h.componentNameWithPrefix(name) %>Meta => ({
         },
         label: {
             control: 'text',
-            description: 'Badge label'
+            description: '<%= h.componentNameNoPrefix(name) %> label'
         }
     },
     args: {

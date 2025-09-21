@@ -60,7 +60,7 @@ export const getMeta = (): DaisyKbdMeta => ({
         },
         label: {
             control: 'text',
-            description: 'Badge label'
+            description: 'Kbd label'
         }
     },
     args: {
