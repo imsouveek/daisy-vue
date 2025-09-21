@@ -9,7 +9,7 @@ import {sizes} from 'daisy-vue/globals'
 
 # <%= h.componentNameNoPrefix(name) %> Component 
 
-A <%=h.capitalize(h.componentNameNoPrefix(name)).toLowerCase() %> component. This component
+A <%= h.componentNameText(name) %> component. This component
 uses the [Daisy UI <%= h.componentNameNoPrefix(name) %> component](https://daisyui.com/components/<%= h.componentNameKebab(name) %>/) 
 and exposes most of the available options.
 
