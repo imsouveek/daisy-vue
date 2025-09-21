@@ -1,5 +1,12 @@
 # daisy-vue
 
+## 1.1.0
+
+### Minor Changes
+
+- ff99bc7: Added Kbd component and updated hygen templates
+- 0371d15: Updated hygen templates and added new browser component
+
 ## 1.0.0
 
 ### Major Changes

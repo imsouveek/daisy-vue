@@ -1,5 +1,19 @@
 # docs
 
+## 2.1.0
+
+### Minor Changes
+
+- ff99bc7: Added Kbd component and updated hygen templates
+- 0371d15: Updated hygen templates and added new browser component
+
+### Patch Changes
+
+- 7391bfc: Quick fix to hygen docs template
+- Updated dependencies [ff99bc7]
+- Updated dependencies [0371d15]
+    - daisy-vue@1.1.0
+
 ## 2.0.0
 
 ### Major Changes
