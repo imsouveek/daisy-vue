@@ -33,15 +33,15 @@ export const getMeta = (): <%= h.componentNameWithPrefix(name) %>Meta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { label, ...<%= h.componentNameNoPrefix(name).toLowerCase() %>Args } = context.args
+                    const { label, ...<%= h.componentNameNoPrefix(name) %>Args } = context.args
 
-                    const renderedProps = Object.keys(<%= h.componentNameNoPrefix(name).toLowerCase() %>Args)
+                    const renderedProps = Object.keys(<%= h.componentNameNoPrefix(name) %>Args)
                         .map((key) =>
-                            typeof <%= h.componentNameNoPrefix(name).toLowerCase() %>Args[key] === 'boolean'
-                                ? <%= h.componentNameNoPrefix(name).toLowerCase() %>Args[key] === true
+                            typeof <%= h.componentNameNoPrefix(name) %>Args[key] === 'boolean'
+                                ? <%= h.componentNameNoPrefix(name) %>Args[key] === true
                                     ? key
                                     : ''
-                                : `${key}="${<%=h.componentNameNoPrefix(name).toLowerCase() %>Args[key]}"`
+                                : `${key}="${<%=h.componentNameNoPrefix(name) %>Args[key]}"`
                         )
                         .join(' ')
                         .trim()

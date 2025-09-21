@@ -37,6 +37,7 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.29.6",
+        "ejs-lint": "^2.0.1",
         "hygen": "^6.2.11"
     }
 }

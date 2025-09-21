@@ -5,4 +5,5 @@
 - [Tabs](/components/tabs)
 - [Button](/components/button)
 - [Browser](/components/browser)
+- [Kbd](/components/kbd)
 <!--do not remove - used by hygen-->

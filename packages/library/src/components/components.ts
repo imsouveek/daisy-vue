@@ -4,6 +4,7 @@ import DaisyTabs from './DaisyTabs/DaisyTabs.vue'
 import DaisyTab from './DaisyTab/DaisyTab.vue'
 import DaisyButton from './DaisyButton/DaisyButton.vue'
 import DaisyBrowser from './DaisyBrowser/DaisyBrowser.vue'
+import DaisyKbd from './DaisyKbd/DaisyKbd.vue'
 // import - do not remove this line, used for hygen generations
 
 // ignore removal of traling comma by prettier so hygen can add new imports
@@ -15,5 +16,6 @@ export {
   DaisyTab,
   DaisyButton,
   DaisyBrowser,
+  DaisyKbd,
   // export - do not remove this line, used for hygen generations
 }

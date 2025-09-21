@@ -36,7 +36,7 @@ If using <%= h.componentNameWithPrefix(name) %> without any props, it defaults t
 
 ## With different sizes
 
-A size property can be set to determine the size of the <%=h.componentNameNoPrefix(name).toLowerCase() %>
+A size property can be set to determine the size of the <%= h.componentNameNoPrefix(name) %>
 
 <DaisyTabs>
 <DaisyTab value="Preview">

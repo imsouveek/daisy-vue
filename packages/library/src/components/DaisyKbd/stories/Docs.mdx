@@ -1,16 +1,13 @@
----
-to: packages/library/src/components/<%= h.componentNameWithPrefix(name) %>/stories/Docs.mdx
----
 import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
 import * as PrimaryStory from './Playground.stories'
 import * as VariationsStories from './Variations.stories'
 
-# <%= h.componentNameWithPrefix(name) %>
+# DaisyKbd
 
 <Meta of={PrimaryStory} />
 
-A <%= h.componentNameText(name) %> component. This component
-uses the [Daisy UI <%= h.componentNameNoPrefix(name) %> component](https://daisyui.com/components/<%= h.componentNameKebab(name) %>/) 
+A kbd component. This component
+uses the [Daisy UI Kbd component](https://daisyui.com/components/kbd/) 
 and exposes most of the available options.
 
 <div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
@@ -22,11 +19,11 @@ and exposes most of the available options.
 
 ## Usage
 
-The style of the <%= h.componentNameLower(name) %> can be modified through various properties
+The style of the kbd can be modified through various properties
 
 ### Sizes
 
-Size of the <%= h.componentNameLower(name) %> can be controlled through this prop
+Size of the kbd can be controlled through this prop
 
 <div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.Sizes} />

@@ -39,6 +39,7 @@ export default defineConfig({
           { text: 'Tabs', link: '/components/tabs' },
           { text: 'Button', link: '/components/button' },
           { text: 'Browser', link: '/components/browser' },
+          { text: 'Kbd', link: '/components/kbd' },
           // do not remove - used by hygen
         ]
             }
