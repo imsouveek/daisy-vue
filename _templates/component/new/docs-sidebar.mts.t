@@ -2,7 +2,7 @@
 inject: true
 to: packages/docs/.vitepress/config.mts
 before: "// do not remove - used by hygen"
-skip_if: "link: '/components/<%=name.toLowerCase()%>'"
+skip_if: "link: '/components/<%= h.componentNameKebab(name)' %>"
 ---
 
-          { text: '<%=h.capitalize(h.componentNameNoPrefix(name))%>', link: '/components/<%=h.componentNameNoPrefix(name).toLowerCase()%>' },
+          { text: '<%= h.componentNameNoPrefix(name) %>', link: '/components/<%= h.componentNameKebab(name) %>' },

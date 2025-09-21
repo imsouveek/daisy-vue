@@ -3,9 +3,10 @@ import DaisyLoading from './DaisyLoading/DaisyLoading.vue'
 import DaisyTabs from './DaisyTabs/DaisyTabs.vue'
 import DaisyTab from './DaisyTab/DaisyTab.vue'
 import DaisyButton from './DaisyButton/DaisyButton.vue'
+import DaisyBrowser from './DaisyBrowser/DaisyBrowser.vue'
 // import - do not remove this line, used for hygen generations
 
-// ignore removal of traling comma by pretter so hygen can add new imports
+// ignore removal of traling comma by prettier so hygen can add new imports
 // prettier-ignore
 export {
   DaisyBadge,
@@ -13,5 +14,6 @@ export {
   DaisyTabs,
   DaisyTab,
   DaisyButton,
+  DaisyBrowser,
   // export - do not remove this line, used for hygen generations
 }

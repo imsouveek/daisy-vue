@@ -32,15 +32,15 @@ export const getMeta = (): DaisyBadgeMeta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { label, ...buttonArgs } = context.args
+                    const { label, ...badgeArgs } = context.args
 
-                    const renderedProps = Object.keys(buttonArgs)
+                    const renderedProps = Object.keys(badgeArgs)
                         .map((key) =>
-                            typeof buttonArgs[key] === 'boolean'
-                                ? buttonArgs[key] === true
+                            typeof badgeArgs[key] === 'boolean'
+                                ? badgeArgs[key] === true
                                     ? key
                                     : ''
-                                : `${key}="${buttonArgs[key]}"`
+                                : `${key}="${badgeArgs[key]}"`
                         )
                         .join(' ')
                         .trim()

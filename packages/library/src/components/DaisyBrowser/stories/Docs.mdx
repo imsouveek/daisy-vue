@@ -1,0 +1,21 @@
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+
+# DaisyBrowser
+
+<Meta of={PrimaryStory} />
+
+A browser component. This component
+uses the [Daisy UI Browser component](https://daisyui.com/components/browser/)
+and exposes most of the available options.
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-white dark:bg-slate-800">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+This component can only be used with a url and a slot with no variations
