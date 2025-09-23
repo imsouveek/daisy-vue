@@ -1,5 +1,11 @@
 # daisy-vue
 
+## 2.0.0
+
+### Major Changes
+
+- d25b010: Re-write of tabs component and new accordion component
+
 ## 1.1.1
 
 ### Patch Changes
