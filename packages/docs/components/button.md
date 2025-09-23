@@ -24,14 +24,14 @@ available options.
 If using DaisyButton without any props, it defaults to primary color and medium size
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 <DaisyButton>Click Me!</DaisyButton>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <DaisyButton>Click Me!</DaisyButton>
@@ -45,7 +45,7 @@ If using DaisyButton without any props, it defaults to primary color and medium 
 A color property can be set to determine the color of the button
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -55,7 +55,7 @@ A color property can be set to determine the color of the button
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="color in [...colorsBrand, ...colorsState, 'ghost', 'link']" :key="color">
 
@@ -73,7 +73,7 @@ A color property can be set to determine the color of the button
 A size property can be set to determine the size of the button
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -83,7 +83,7 @@ A size property can be set to determine the size of the button
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="size in sizes" :key="size">
 
@@ -101,7 +101,7 @@ A size property can be set to determine the size of the button
 Several other properties can be used with buttons to control their behavior
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -113,7 +113,7 @@ Several other properties can be used with buttons to control their behavior
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="variant in variants" :key="variant">
 

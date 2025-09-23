@@ -1,0 +1,37 @@
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+# DaisyAccordion
+
+<Meta of={PrimaryStory} />
+
+An accordion component. This component uses the [Daisy UI Accordion component](https://daisyui.com/components/accordion/)
+and the [Daisy UI Collapse component](https://daisyui.com/components/collapse/) and exposes most of the available options.
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+The behavior and icon of the accordion can be modified through various properties
+
+### Icons
+
+The icon of the accordion panels can be changed using the icon property
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Icons} />
+</div>
+
+### Open Modes
+
+The accordion behavior can be modified to enable multiple panels to be expanded or all panels to be collapsed
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.OpenModes} />
+</div>

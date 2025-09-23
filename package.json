@@ -25,7 +25,8 @@
         "directive:new": "hygen directive new && pnpm lib:build",
         "changeset": "npx changeset",
         "changeset:version": "npx changeset version",
-        "changeset:publish": "pnpm lib:build && pnpm nuxt-module:prepack && npx changeset publish"
+        "changeset:publish": "pnpm lib:build && pnpm nuxt-module:prepack && npx changeset publish",
+        "ejslint": "ejslint _templates"
     },
     "keywords": [],
     "author": "",

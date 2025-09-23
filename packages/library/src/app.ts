@@ -4,10 +4,7 @@ import App from './App.vue'
 import { createDaisyVue } from './main'
 
 const daisyVue = createDaisyVue({
-    shamefullyRegisterAllComponents: true,
-    button: {
-        loading: 'infinity'
-    }
+    shamefullyRegisterAllComponents: true
 })
 
 createApp(App).use(daisyVue).mount('#app')

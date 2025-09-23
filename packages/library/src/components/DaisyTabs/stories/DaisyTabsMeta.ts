@@ -25,9 +25,9 @@ export const getMeta = (): DaisyTabsMeta => ({
         template: `
             <div style="width: 896px;" class=" flex flex-col items-center">
                 <DaisyTabs v-bind="args">
-                    <DaisyTab value="Tab 1">{{args.tabOneText}}</DaisyTab>
-                    <DaisyTab value="Tab 2">{{args.tabTwoText}}</DaisyTab>
-                    <DaisyTab value="Tab 3">{{args.tabThreeText}}</DaisyTab>
+                    <DaisyTab title="Tab 1">{{args.tabOneText}}</DaisyTab>
+                    <DaisyTab title="Tab 2">{{args.tabTwoText}}</DaisyTab>
+                    <DaisyTab title="Tab 3">{{args.tabThreeText}}</DaisyTab>
                 </DaisyTabs>
             </div>
         `
@@ -49,13 +49,13 @@ export const getMeta = (): DaisyTabsMeta => ({
                     return `
                         <template>
                             <DaisyTabs${renderedProps ? ' ' + renderedProps : ''}>
-                                <DaisyTab value="Tab 1">
+                                <DaisyTab title="Tab 1">
                                     ${tabOneText}
                                 </DaisyTab>
-                                <DaisyTab value="Tab 2">
+                                <DaisyTab title="Tab 2">
                                     ${tabTwoText}
                                 </DaisyTab>
-                                <DaisyTab value="Tab 3">
+                                <DaisyTab title="Tab 3">
                                     ${tabThreeText}
                                 </DaisyTab>
                             </DaisyTabs>
@@ -79,12 +79,10 @@ export const getMeta = (): DaisyTabsMeta => ({
             options: positions
         },
         modelValue: {
-            name: 'value',
             description: 'Currently selected tab',
             control: { type: 'text' }
         },
         'update:modelValue': {
-            name: 'update:value',
             description: 'Emitted when the active tab changes'
         },
         tabOneText: {

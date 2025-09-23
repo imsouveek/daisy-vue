@@ -14,14 +14,14 @@ available options.
 If using DaisyBadge without any props, it defaults to primary color and medium size
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 <DaisyBadge>TEST</DaisyBadge>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <DaisyBadge>TEST</DaisyBadge>
@@ -35,7 +35,7 @@ If using DaisyBadge without any props, it defaults to primary color and medium s
 A color property can be set to determine the color of the badge
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -45,7 +45,7 @@ A color property can be set to determine the color of the badge
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="color in [...colorsBrand, ...colorsState, 'ghost']" :key="color">
 
@@ -63,7 +63,7 @@ A color property can be set to determine the color of the badge
 A size property can be set to determine the size of the badge
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -73,7 +73,7 @@ A size property can be set to determine the size of the badge
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="size in sizes" :key="size">
 
@@ -91,7 +91,7 @@ A size property can be set to determine the size of the badge
 Badges can also be outlined or without any text
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -102,7 +102,7 @@ Badges can also be outlined or without any text
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <DaisyBadge outline>TEST</DaisyBadge>

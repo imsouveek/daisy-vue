@@ -17,24 +17,24 @@ available options.
 If using DaisyTabs without any props, it defaults to lifted type, top position and medium size
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 <DaisyTabs>
-<DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-<DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-<DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+<DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+<DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+<DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <DaisyTabs>
-    <DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-    <DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-    <DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+    <DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+    <DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+    <DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 ```
 
@@ -46,30 +46,30 @@ If using DaisyTabs without any props, it defaults to lifted type, top position a
 Tabs can be displayed in different styles depending on the type property
 
 <DaisyTabs type="lifted">
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
 <div v-for="type in types" :key="type" class="m-4">
 <p>{{type.toUpperCase()}}</p>
 <DaisyTabs :type="type">
-<DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-<DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-<DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+<DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+<DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+<DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 </div>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="type in types" :key="type">
 
 ```vue-vue
 <DaisyTabs type="{{type}}">
-    <DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-    <DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-    <DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+    <DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+    <DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+    <DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 ```
 
@@ -84,30 +84,30 @@ Tabs can be displayed in different styles depending on the type property
 Tabs can be in different sizes based on the size property
 
 <DaisyTabs type="lifted">
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
 <div v-for="size in sizes" :key="size" class="m-4">
 <p>{{size.toUpperCase()}}</p>
 <DaisyTabs :size="size">
-<DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-<DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-<DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+<DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+<DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+<DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 </div>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="size in sizes" :key="size">
 
 ```vue-vue
 <DaisyTabs size="{{size}}">
-    <DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-    <DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-    <DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+    <DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+    <DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+    <DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 ```
 
@@ -127,30 +127,30 @@ have position explicitly set as bottom, then we can have nested tabs with outer 
 positioned at bottom
 
 <DaisyTabs type="lifted">
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
 <div v-for="position in positions" :key="position" class="m-4">
 <p>{{position.toUpperCase()}}</p>
 <DaisyTabs :position="position">
-<DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-<DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-<DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+<DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+<DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+<DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 </div>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="position in positions" :key="position">
 
 ```vue-vue
 <DaisyTabs position="{{position}}">
-    <DaisyTab value="Tab 1">Tab 1 Content</DaisyTab>
-    <DaisyTab value="Tab 2">Tab 2 Content</DaisyTab>
-    <DaisyTab value="Tab 3">Tab 3 Content</DaisyTab>
+    <DaisyTab title="Tab 1">Tab 1 Content</DaisyTab>
+    <DaisyTab title="Tab 2">Tab 2 Content</DaisyTab>
+    <DaisyTab title="Tab 3">Tab 3 Content</DaisyTab>
 </DaisyTabs>
 ```
 

@@ -40,6 +40,7 @@ export default defineConfig({
           { text: 'Button', link: '/components/button' },
           { text: 'Browser', link: '/components/browser' },
           { text: 'Kbd', link: '/components/kbd' },
+          { text: 'Accordion', link: '/components/accordion' },
           // do not remove - used by hygen
         ]
             }

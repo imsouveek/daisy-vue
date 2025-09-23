@@ -4,6 +4,9 @@ import DaisyTab from '../../DaisyTab/DaisyTab.vue'
 import { types, positions } from '../config'
 import { sizes } from '../../../globals'
 
+/**
+ * Get base meta from DaisyTabsMeta.ts
+ */
 const meta = getMeta()
 const srcArgTypes = meta.argTypes
 
@@ -18,152 +21,71 @@ export default {
     },
     argTypes: {
         ...srcArgTypes,
-        tabOneText: {
-            table: {
-                disable: true
-            }
-        },
-        tabTwoText: {
-            table: {
-                disable: true
-            }
-        },
-        tabThreeText: {
-            table: {
-                disable: true
-            }
-        }
+        tabOneText: { table: { disable: true } },
+        tabTwoText: { table: { disable: true } },
+        tabThreeText: { table: { disable: true } }
     }
 } as DaisyTabsMeta
 
+/**
+ * Helper to render a variation grid
+ */
+function renderVariation(kind: 'size' | 'type' | 'position', values: string[]) {
+    return (args: DaisyTabsMeta['args']) => ({
+        components: { DaisyTabs, DaisyTab },
+        setup() {
+            return { args, values, kind }
+        },
+        template: `
+      <div class="grid gap-4">
+        <div v-for="val in values" :key="val">
+          <h4 class="my-4">Tabs: {{ val ? val.toUpperCase() : 'UNDEFINED' }}</h4>
+          <DaisyTabs v-bind="args" v-bind="{ [kind]: val }">
+            <DaisyTab title="Tab 1">
+              Lorem 1 ipsum dolor sit amet…
+            </DaisyTab>
+            <DaisyTab title="Tab 2">
+              Lorem 2 ipsum dolor sit amet…
+            </DaisyTab>
+            <DaisyTab title="Tab 3">
+              Lorem 3 ipsum dolor sit amet…
+            </DaisyTab>
+          </DaisyTabs>
+        </div>
+      </div>
+    `
+    })
+}
+
+/**
+ * Sizes variation
+ */
 export const Sizes: DaisyTabsStory = {
     argTypes: {
         ...srcArgTypes,
-        size: {
-            table: {
-                disable: true
-            }
-        }
+        size: { table: { disable: true } } // explicitly disable size control
     },
-    render: (args) => ({
-        components: { DaisyTabs, DaisyTab },
-        setup() {
-            return {
-                args,
-                sizes
-            }
-        },
-        template: `
-        <div class="grid gap-4">
-            <div v-for="size in sizes" :key="size">
-                <h4 class="my-4">Tabs: {{ size?.toUpperCase() ?? 'UNDEFINED' }}</h4>
-                <DaisyTabs :size="size" v-bind="args">
-                    <DaisyTab value="Tab 1">
-                        Lorem 1 ipsum dolor sit amet, consectetur adipisicing elit. Expedita saepe sapiente fugit
-                        minus labore quos libero possimus sint molestiae quisquam, optio quam voluptatem veritatis
-                        a accusantium, cumque error nam quaerat.
-                    </DaisyTab>
-                    <DaisyTab value="Tab 2">
-                        Lorem 2 ipsum dolor sit amet consectetur adipisicing elit. Quaerat, praesentium
-                        accusantium optio soluta eaque quam? Labore libero ratione quam aut natus vitae? Error
-                        voluptatum velit voluptatem accusamus ut optio officia!
-                    </DaisyTab>
-                    <DaisyTab value="Tab 3">
-                        Lorem 3 ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam, deserunt
-                        accusantium ex dolores, ducimus aperiam consequatur sint debitis maxime saepe inventore
-                        quisquam officiis fuga voluptatem quia odio, recusandae fugit?
-                    </DaisyTab>
-                </DaisyTabs>
-            </div>
-        </div>
-        `
-    })
+    render: renderVariation('size', [...sizes] as DaisyTabsMeta['args']['size'][])
 }
 
+/**
+ * Types variation
+ */
 export const Types: DaisyTabsStory = {
     argTypes: {
         ...srcArgTypes,
-        type: {
-            table: {
-                disable: true
-            }
-        }
+        type: { table: { disable: true } } // explicitly disable type control
     },
-    render: (args) => ({
-        components: { DaisyTabs, DaisyTab },
-        setup() {
-            return {
-                args,
-                types
-            }
-        },
-        template: `
-        <div class="grid gap-4">
-            <div v-for="type in types" :key="type">
-                <h4 class="my-4">Tabs: {{ type?.toUpperCase() ?? 'UNDEFINED' }}</h4>
-                <DaisyTabs :type="type" v-bind="args">
-                    <DaisyTab value="Tab 1">
-                        Lorem 1 ipsum dolor sit amet, consectetur adipisicing elit. Expedita saepe sapiente fugit
-                        minus labore quos libero possimus sint molestiae quisquam, optio quam voluptatem veritatis
-                        a accusantium, cumque error nam quaerat.
-                    </DaisyTab>
-                    <DaisyTab value="Tab 2">
-                        Lorem 2 ipsum dolor sit amet consectetur adipisicing elit. Quaerat, praesentium
-                        accusantium optio soluta eaque quam? Labore libero ratione quam aut natus vitae? Error
-                        voluptatum velit voluptatem accusamus ut optio officia!
-                    </DaisyTab>
-                    <DaisyTab value="Tab 3">
-                        Lorem 3 ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam, deserunt
-                        accusantium ex dolores, ducimus aperiam consequatur sint debitis maxime saepe inventore
-                        quisquam officiis fuga voluptatem quia odio, recusandae fugit?
-                    </DaisyTab>
-                </DaisyTabs>
-            </div>
-        </div>
-        `
-    })
+    render: renderVariation('type', [...types] as DaisyTabsMeta['args']['type'][])
 }
 
+/**
+ * Positions variation
+ */
 export const Positions: DaisyTabsStory = {
     argTypes: {
         ...srcArgTypes,
-        position: {
-            table: {
-                disable: true
-            }
-        }
+        position: { table: { disable: true } } // explicitly disable position control
     },
-    render: (args) => ({
-        components: { DaisyTabs, DaisyTab },
-        setup() {
-            return {
-                args,
-                positions
-            }
-        },
-        template: `
-        <div class="grid gap-4">
-            <div v-for="position in positions" :key="position">
-                <h4 class="my-4">Tabs: {{ position?.toUpperCase() ?? 'UNDEFINED' }}</h4>
-                <DaisyTabs :position="position" v-bind="args">
-                    <DaisyTab value="Tab 1">
-                        Lorem 1 ipsum dolor sit amet, consectetur adipisicing elit. Expedita saepe sapiente fugit
-                        minus labore quos libero possimus sint molestiae quisquam, optio quam voluptatem veritatis
-                        a accusantium, cumque error nam quaerat.
-                    </DaisyTab>
-                    <DaisyTab value="Tab 2">
-                        Lorem 2 ipsum dolor sit amet consectetur adipisicing elit. Quaerat, praesentium
-                        accusantium optio soluta eaque quam? Labore libero ratione quam aut natus vitae? Error
-                        voluptatum velit voluptatem accusamus ut optio officia!
-                    </DaisyTab>
-                    <DaisyTab value="Tab 3">
-                        Lorem 3 ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam, deserunt
-                        accusantium ex dolores, ducimus aperiam consequatur sint debitis maxime saepe inventore
-                        quisquam officiis fuga voluptatem quia odio, recusandae fugit?
-                    </DaisyTab>
-                </DaisyTabs>
-            </div>
-        </div>
-        `
-    })
+    render: renderVariation('position', [...positions] as DaisyTabsMeta['args']['position'][])
 }

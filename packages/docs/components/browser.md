@@ -13,7 +13,7 @@ and exposes most of the available options.
 This component takes a URL prop to set the mockup browser url but has no other variations
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 <DaisyBrowser>
@@ -22,7 +22,7 @@ This is a test
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <DaisyBrowser>This is a test</DaisyBrowser>

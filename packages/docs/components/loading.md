@@ -16,14 +16,14 @@ available options.
 If using DaisyLoading without any props, it defaults to primary color and medium size
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 <DaisyLoading/>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <DaisyLoading />
@@ -37,7 +37,7 @@ If using DaisyLoading without any props, it defaults to primary color and medium
 A color property can be set to determine the color of the loading component
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -50,7 +50,7 @@ A color property can be set to determine the color of the loading component
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="color in [...colorsBrand, ...colorsState]" :key="color">
 
@@ -68,7 +68,7 @@ A color property can be set to determine the color of the loading component
 A size property can be set to determine the size of the loading component
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -81,7 +81,7 @@ A size property can be set to determine the size of the loading component
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="size in sizes" :key="size">
 
@@ -99,7 +99,7 @@ A size property can be set to determine the size of the loading component
 A type property can be set to determine the type of animation of the loading component
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -112,7 +112,7 @@ A type property can be set to determine the type of animation of the loading com
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="type in types" :key="type">
 
