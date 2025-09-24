@@ -18,14 +18,14 @@ and exposes most of the available options.
 If using <%= h.componentNameWithPrefix(name) %> without any props, it defaults to medium size
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 <<%= h.componentNameWithPrefix(name) %>>TEST</<%= h.componentNameWithPrefix(name) %>>
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 ```vue
 <<%= h.componentNameWithPrefix(name) %>>TEST</<%= h.componentNameWithPrefix(name) %>>
@@ -39,7 +39,7 @@ If using <%= h.componentNameWithPrefix(name) %> without any props, it defaults t
 A size property can be set to determine the size of the <%= h.componentNameNoPrefix(name) %>
 
 <DaisyTabs>
-<DaisyTab value="Preview">
+<DaisyTab title="Preview">
 
 :::raw
 
@@ -49,7 +49,7 @@ A size property can be set to determine the size of the <%= h.componentNameNoPre
 :::
 
 </DaisyTab>
-<DaisyTab value="Code">
+<DaisyTab title="Code">
 
 <template v-for="size in sizes" :key="size">
 
