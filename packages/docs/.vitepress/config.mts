@@ -41,6 +41,8 @@ export default defineConfig({
           { text: 'Browser', link: '/components/browser' },
           { text: 'Kbd', link: '/components/kbd' },
           { text: 'Accordion', link: '/components/accordion' },
+          { text: 'Avatar', link: '/components/avatar' },
+          { text: 'AvatarGroup', link: '/components/avatar-group' },
           // do not remove - used by hygen
         ]
             }

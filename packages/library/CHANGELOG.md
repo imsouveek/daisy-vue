@@ -1,5 +1,14 @@
 # daisy-vue
 
+## 2.1.0
+
+### Minor Changes
+
+- f67111c: New Avatar component
+- 093171a: Small changes to how storybook displays controls
+- 7ca464c: Added new avatar group component
+- 44ec8e5: Updated documentation for DaisyAvatarGroup component
+
 ## 2.0.0
 
 ### Major Changes

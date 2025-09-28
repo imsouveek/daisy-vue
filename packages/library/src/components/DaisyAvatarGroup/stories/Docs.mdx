@@ -1,0 +1,38 @@
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+# DaisyAvatarGroup
+
+<Meta of={PrimaryStory} />
+
+An avatar group component. This component replicates the behavior of the avatar-group classin Daisy UI
+that is documented in [Daisy UI Avatar component](https://daisyui.com/components/avatar/), but does not use the
+avatar-group class itself to support masks for avatar components.
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+The style of the avatar group can be modified through various properties
+
+### Sizes
+
+Size of the avatar group can be controlled through this prop
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Sizes} />
+</div>
+
+### Masks
+
+Each child of the avatar group can get a common shape based on the mask prop
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Masks} />
+</div>

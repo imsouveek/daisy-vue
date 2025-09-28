@@ -5,9 +5,12 @@ import { types, positions } from '../config'
 import { sizes } from '../../../globals'
 
 export type DaisyTabsArgs = ComponentPropsAndSlots<typeof DaisyTabs> & {
-    tabOneText?: string
-    tabTwoText?: string
-    tabThreeText?: string
+    tabOneTitle?: string
+    tabOneContent?: string
+    tabTwoTitle?: string
+    tabTwoContent?: string
+    tabThreeTitle?: string
+    tabThreeContent?: string
     'update:modelValue': string
 }
 
@@ -25,9 +28,9 @@ export const getMeta = (): DaisyTabsMeta => ({
         template: `
             <div style="width: 896px;" class=" flex flex-col items-center">
                 <DaisyTabs v-bind="args">
-                    <DaisyTab title="Tab 1">{{args.tabOneText}}</DaisyTab>
-                    <DaisyTab title="Tab 2">{{args.tabTwoText}}</DaisyTab>
-                    <DaisyTab title="Tab 3">{{args.tabThreeText}}</DaisyTab>
+                    <DaisyTab :title="args.tabOneTitle">{{args.tabOneContent}}</DaisyTab>
+                    <DaisyTab :title="args.tabTwoTitle">{{args.tabTwoContent}}</DaisyTab>
+                    <DaisyTab :title="args.tabThreeTitle">{{args.tabThreeContent}}</DaisyTab>
                 </DaisyTabs>
             </div>
         `
@@ -39,7 +42,15 @@ export const getMeta = (): DaisyTabsMeta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { tabOneText, tabTwoText, tabThreeText, ...tabArgs } = context.args
+                    const {
+                        tabOneTitle,
+                        tabOneContent,
+                        tabTwoTitle,
+                        tabTwoContent,
+                        tabThreeTitle,
+                        tabThreeContent,
+                        ...tabArgs
+                    } = context.args
 
                     const renderedProps = Object.keys(tabArgs)
                         .map((key) => `${key}="${tabArgs[key]}"`)
@@ -49,14 +60,14 @@ export const getMeta = (): DaisyTabsMeta => ({
                     return `
                         <template>
                             <DaisyTabs${renderedProps ? ' ' + renderedProps : ''}>
-                                <DaisyTab title="Tab 1">
-                                    ${tabOneText}
+                                <DaisyTab title="${tabOneTitle}">
+                                    ${tabOneContent}
                                 </DaisyTab>
-                                <DaisyTab title="Tab 2">
-                                    ${tabTwoText}
+                                <DaisyTab title="${tabTwoTitle}">
+                                    ${tabTwoContent}
                                 </DaisyTab>
-                                <DaisyTab title="Tab 3">
-                                    ${tabThreeText}
+                                <DaisyTab title="${tabThreeTitle}">
+                                    ${tabThreeContent}
                                 </DaisyTab>
                             </DaisyTabs>
                         </template>
@@ -85,29 +96,44 @@ export const getMeta = (): DaisyTabsMeta => ({
         'update:modelValue': {
             description: 'Emitted when the active tab changes'
         },
-        tabOneText: {
+        tabOneTitle: {
+            content: { type: 'text' },
+            description: 'Tab one title'
+        },
+        tabOneContent: {
             control: { type: 'text' },
             description: 'Tab one text'
         },
-        tabTwoText: {
+        tabTwoTitle: {
+            content: { type: 'text' },
+            description: 'Tab two title'
+        },
+        tabTwoContent: {
             control: { type: 'text' },
             description: 'Tab two text'
         },
-        tabThreeText: {
+        tabThreeTitle: {
+            content: { type: 'text' },
+            description: 'Tab three title'
+        },
+        tabThreeContent: {
             control: { type: 'text' },
             description: 'Tab three text'
         }
     },
     args: {
-        tabOneText:
+        tabOneTitle: 'Tab 1',
+        tabOneContent:
             'Lorem 1 ipsum dolor sit amet, consectetur adipisicing elit. Expedita saepe sapiente fugit ' +
             'minus labore quos libero possimus sint molestiae quisquam, optio quam voluptatem veritatis ' +
             'a accusantium, cumque error nam quaerat.',
-        tabTwoText:
+        tabTwoTitle: 'Tab 2',
+        tabTwoContent:
             'Lorem 2 ipsum dolor sit amet consectetur adipisicing elit. Quaerat, praesentium ' +
             'accusantium optio soluta eaque quam? Labore libero ratione quam aut natus vitae? Error ' +
             'voluptatum velit voluptatem accusamus ut optio officia!',
-        tabThreeText:
+        tabThreeTitle: 'Tab 3',
+        tabThreeContent:
             'Lorem 3 ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam, deserunt ' +
             'accusantium ex dolores, ducimus aperiam consequatur sint debitis maxime saepe inventore ' +
             'quisquam officiis fuga voluptatem quia odio, recusandae fugit?'

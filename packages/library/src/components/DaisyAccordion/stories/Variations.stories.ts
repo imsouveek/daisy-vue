@@ -14,13 +14,7 @@ export default {
         docs: { source: false }
     },
     argTypes: {
-        ...srcArgTypes,
-        panelOneTitle: { table: { disable: true } },
-        panelOneContent: { table: { disable: true } },
-        panelTwoTitle: { table: { disable: true } },
-        panelTwoContent: { table: { disable: true } },
-        panelThreeTitle: { table: { disable: true } },
-        panelThreeContent: { table: { disable: true } }
+        ...srcArgTypes
     }
 } as DaisyAccordionMeta
 
@@ -30,7 +24,7 @@ export default {
 export const Icons: DaisyAccordionStory = {
     argTypes: {
         ...srcArgTypes,
-        icon: { table: { disable: true } }
+        icon: { control: false }
     },
     render: (args) => ({
         components: { DaisyAccordion, DaisyAccordionPanel },
@@ -42,8 +36,9 @@ export const Icons: DaisyAccordionStory = {
         <div v-for="icon in iconTypes" :key="icon">
           <h4 class="mb-2">Icon: {{ icon?.toUpperCase() ?? 'UNDEFINED' }}</h4>
           <DaisyAccordion :icon="icon" v-bind="args">
-            <DaisyAccordionPanel title="Panel 1">Panel 1 content</DaisyAccordionPanel>
-            <DaisyAccordionPanel title="Panel 2">Panel 2 content</DaisyAccordionPanel>
+            <DaisyAccordionPanel :title="args.panelOneTitle">{{args.panelOneContent}}</DaisyAccordionPanel>
+            <DaisyAccordionPanel :title="args.panelTwoTitle">{{args.panelTwoContent}}</DaisyAccordionPanel>
+            <DaisyAccordionPanel :title="args.panelThreeTitle">{{args.panelThreeContent}}</DaisyAccordionPanel>
           </DaisyAccordion>
         </div>
       </div>
@@ -57,8 +52,8 @@ export const Icons: DaisyAccordionStory = {
 export const OpenModes: DaisyAccordionStory = {
     argTypes: {
         ...srcArgTypes,
-        multipleOpen: { table: { disable: true } },
-        noneOpen: { table: { disable: true } }
+        multipleOpen: { control: false },
+        noneOpen: { control: false }
     },
     render: (args) => ({
         components: { DaisyAccordion, DaisyAccordionPanel },
@@ -76,9 +71,9 @@ export const OpenModes: DaisyAccordionStory = {
         <div v-for="combo in combos" :key="combo.label">
           <h4 class="mb-2">{{ combo.label }}</h4>
           <DaisyAccordion :multipleOpen="combo.multipleOpen" :noneOpen="combo.noneOpen" v-bind="args">
-            <DaisyAccordionPanel title="Panel 1">Panel 1 content</DaisyAccordionPanel>
-            <DaisyAccordionPanel title="Panel 2">Panel 2 content</DaisyAccordionPanel>
-            <DaisyAccordionPanel title="Panel 3">Panel 3 content</DaisyAccordionPanel>
+            <DaisyAccordionPanel :title="args.panelOneTitle">{{args.panelOneContent}}</DaisyAccordionPanel>
+            <DaisyAccordionPanel :title="args.panelTwoTitle">{{args.panelTwoContent}}</DaisyAccordionPanel>
+            <DaisyAccordionPanel :title="args.panelThreeTitle">{{args.panelThreeContent}}</DaisyAccordionPanel>
           </DaisyAccordion>
         </div>
       </div>

@@ -7,4 +7,6 @@
 - [Browser](/components/browser)
 - [Kbd](/components/kbd)
 - [Accordion](/components/accordion)
+- [Avatar](/components/avatar)
+- [AvatarGroup](/components/avatar-group)
   <!--do not remove - used by hygen-->

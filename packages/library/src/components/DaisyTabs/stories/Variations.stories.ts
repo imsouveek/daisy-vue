@@ -18,12 +18,6 @@ export default {
         docs: {
             source: false
         }
-    },
-    argTypes: {
-        ...srcArgTypes,
-        tabOneText: { table: { disable: true } },
-        tabTwoText: { table: { disable: true } },
-        tabThreeText: { table: { disable: true } }
     }
 } as DaisyTabsMeta
 
@@ -37,18 +31,18 @@ function renderVariation(kind: 'size' | 'type' | 'position', values: string[]) {
             return { args, values, kind }
         },
         template: `
-      <div class="grid gap-4">
+      <div class="grid grid-cols-1 gap-4" style="width: 896px;" >
         <div v-for="val in values" :key="val">
           <h4 class="my-4">Tabs: {{ val ? val.toUpperCase() : 'UNDEFINED' }}</h4>
-          <DaisyTabs v-bind="args" v-bind="{ [kind]: val }">
-            <DaisyTab title="Tab 1">
-              Lorem 1 ipsum dolor sit amet…
+          <DaisyTabs  v-bind="{ ...args, [kind]: val }">
+            <DaisyTab :title="args.tabOneTitle">
+              {{args.tabOneContent}}
             </DaisyTab>
-            <DaisyTab title="Tab 2">
-              Lorem 2 ipsum dolor sit amet…
+            <DaisyTab :title="args.tabTwoTitle">
+              {{args.tabTwoContent}}
             </DaisyTab>
-            <DaisyTab title="Tab 3">
-              Lorem 3 ipsum dolor sit amet…
+            <DaisyTab :title="args.tabThreeTitle">
+              {{args.tabThreeContent}}
             </DaisyTab>
           </DaisyTabs>
         </div>
@@ -63,7 +57,7 @@ function renderVariation(kind: 'size' | 'type' | 'position', values: string[]) {
 export const Sizes: DaisyTabsStory = {
     argTypes: {
         ...srcArgTypes,
-        size: { table: { disable: true } } // explicitly disable size control
+        size: { control: false } // explicitly disable size control
     },
     render: renderVariation('size', [...sizes] as DaisyTabsMeta['args']['size'][])
 }
@@ -74,7 +68,7 @@ export const Sizes: DaisyTabsStory = {
 export const Types: DaisyTabsStory = {
     argTypes: {
         ...srcArgTypes,
-        type: { table: { disable: true } } // explicitly disable type control
+        type: { control: false } // explicitly disable type control
     },
     render: renderVariation('type', [...types] as DaisyTabsMeta['args']['type'][])
 }
@@ -85,7 +79,7 @@ export const Types: DaisyTabsStory = {
 export const Positions: DaisyTabsStory = {
     argTypes: {
         ...srcArgTypes,
-        position: { table: { disable: true } } // explicitly disable position control
+        position: { control: false } // explicitly disable position control
     },
     render: renderVariation('position', [...positions] as DaisyTabsMeta['args']['position'][])
 }

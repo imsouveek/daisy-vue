@@ -26,9 +26,7 @@ export const Colors: DaisyLoadingStory = {
     argTypes: {
         ...srcArgTypes,
         color: {
-            table: {
-                disable: true
-            }
+            control: false
         }
     },
     render: (args) => ({
@@ -54,9 +52,7 @@ export const Sizes: DaisyLoadingStory = {
     argTypes: {
         ...srcArgTypes,
         size: {
-            table: {
-                disable: true
-            }
+            control: false
         }
     },
     render: (args) => ({
@@ -83,9 +79,7 @@ export const Types: DaisyLoadingStory = {
     argTypes: {
         ...srcArgTypes,
         type: {
-            table: {
-                disable: true
-            }
+            control: false
         }
     },
     render: (args) => ({

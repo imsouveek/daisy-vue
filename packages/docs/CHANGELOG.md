@@ -1,5 +1,21 @@
 # docs
 
+## 3.1.0
+
+### Minor Changes
+
+- f67111c: New Avatar component
+- 7ca464c: Added new avatar group component
+- 44ec8e5: Updated documentation for DaisyAvatarGroup component
+
+### Patch Changes
+
+- Updated dependencies [f67111c]
+- Updated dependencies [093171a]
+- Updated dependencies [7ca464c]
+- Updated dependencies [44ec8e5]
+    - daisy-vue@2.1.0
+
 ## 3.0.0
 
 ### Major Changes

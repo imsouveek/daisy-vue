@@ -18,14 +18,6 @@ export default {
         docs: {
             source: false
         }
-    },
-    argTypes: {
-        ...srcArgTypes,
-        label: {
-            table: {
-                disable: true
-            }
-        }
     }
 } as DaisyButtonMeta
 
@@ -33,9 +25,7 @@ export const Colors: DaisyButtonStory = {
     argTypes: {
         ...srcArgTypes,
         color: {
-            table: {
-                disable: true
-            }
+            control: false
         }
     },
     render: (args) => ({
@@ -49,7 +39,8 @@ export const Colors: DaisyButtonStory = {
         template: `
             <div class="grid grid-cols-5 gap-4">
                 <div v-for="color in daisyButtonColors" :key="color" class="flex flex-col items-center">
-                    <DaisyButton :color="color" v-bind="args">{{ color?.toUpperCase() ?? 'UNDEFINED' }}</DaisyButton>
+                    {{ color?.toUpperCase() ?? 'UNDEFINED' }}
+                    <DaisyButton :color="color" v-bind="args">{{args.label}}</DaisyButton>
                 </div>
             </div>
         `
@@ -60,9 +51,7 @@ export const Sizes: DaisyButtonStory = {
     argTypes: {
         ...srcArgTypes,
         size: {
-            table: {
-                disable: true
-            }
+            control: false
         }
     },
     render: (args) => ({
@@ -76,7 +65,8 @@ export const Sizes: DaisyButtonStory = {
         template: `
             <div class="grid grid-cols-5 gap-4">
                 <div v-for="size in daisyButtonSizes" :key="size" class="flex flex-col items-center">
-                    <DaisyButton :size="size" v-bind="args">{{ size?.toUpperCase() ?? 'UNDEFINED' }}</DaisyButton>
+                    {{ size?.toUpperCase() ?? 'UNDEFINED' }}
+                    <DaisyButton :size="size" v-bind="args">{{args.label}}</DaisyButton>
                 </div>
             </div>
         `
@@ -89,9 +79,7 @@ export const Variants: DaisyButtonStory = {
         ...Object.keys(srcArgTypes).reduce((result, key) => {
             if (key !== 'color' && key !== 'size') {
                 result[key] = {
-                    table: {
-                        disable: true
-                    }
+                    control: false
                 }
             }
             return result
@@ -114,14 +102,17 @@ export const Variants: DaisyButtonStory = {
         template: `
             <div class="grid grid-cols-5 gap-4">
                 <div v-for="variant in variants" :key="variant.name" class="flex flex-col items-center">
-                    <DaisyButton v-bind="{...args, ...variant}">{{ variant.name.toUpperCase() }}</DaisyButton>
+                    {{ variant.name.toUpperCase() }}
+                    <DaisyButton v-bind="{...args, ...variant}">{{args.label}}</DaisyButton>
                 </div>
             </div>
             <div style="width: 896px;" class=" m-4 flex flex-col items-center">
-                <DaisyButton v-bind="args" wide>WIDE</DaisyButton>
+                WIDE
+                <DaisyButton v-bind="args" wide>{{args.label}}</DaisyButton>
             </div>
             <div style="width: 896px;" class=" flex flex-col items-center">
-                <DaisyButton v-bind="args" block>BLOCK</DaisyButton>
+                BLOCK
+                <DaisyButton v-bind="args" block>{{args.label}}</DaisyButton>
             </div>
         `
     })

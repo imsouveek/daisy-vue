@@ -6,3 +6,8 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+.mask-square {
+    -webkit-mask-image: linear-gradient(#000, #000);
+    mask-image: linear-gradient(#000, #000);
+}
