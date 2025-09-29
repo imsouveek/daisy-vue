@@ -58,6 +58,7 @@
         "daisyui": "^5.0.54",
         "defu": "^6.1.4",
         "nanoid": "^5.1.5",
+        "radix-vue": "^1.9.17",
         "tailwindcss": "^4.1.12"
     },
     "devDependencies": {
