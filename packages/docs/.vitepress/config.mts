@@ -43,6 +43,7 @@ export default defineConfig({
           { text: 'Accordion', link: '/components/accordion' },
           { text: 'Avatar', link: '/components/avatar' },
           { text: 'AvatarGroup', link: '/components/avatar-group' },
+          { text: 'ContextMenu', link: '/components/context-menu' },
           // do not remove - used by hygen
         ]
             }

@@ -9,4 +9,5 @@
 - [Accordion](/components/accordion)
 - [Avatar](/components/avatar)
 - [AvatarGroup](/components/avatar-group)
+- [ContextMenu](/components/context-menu)
   <!--do not remove - used by hygen-->
