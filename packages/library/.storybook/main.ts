@@ -1,5 +1,5 @@
 import type { StorybookConfig } from '@storybook/vue3-vite'
-
+import remarkGfm from 'remark-gfm'
 import { join, dirname } from 'path'
 
 /**
@@ -11,7 +11,18 @@ function getAbsolutePath(value: string): ReturnType<typeof dirname> {
 }
 const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: [getAbsolutePath('@storybook/addon-docs')],
+    addons: [
+        {
+            name: getAbsolutePath('@storybook/addon-docs'),
+            options: {
+                mdxPluginOptions: {
+                    mdxCompileOptions: {
+                        remarkPlugins: [remarkGfm]
+                    }
+                }
+            }
+        }
+    ],
     framework: {
         name: getAbsolutePath('@storybook/vue3-vite'),
         options: {

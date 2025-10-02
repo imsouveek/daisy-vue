@@ -1,13 +1,12 @@
 import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
 import * as PrimaryStory from './Playground.stories'
-import * as VariationsStories from './Variations.stories'
 
 # DaisyContextMenu
 
 <Meta of={PrimaryStory} />
 
 A context menu component. This component
-uses the [Daisy UI ContextMenu component](https://daisyui.com/components/context-menu/) 
+uses the [Daisy UI ContextMenu component](https://daisyui.com/components/context-menu/)
 and exposes most of the available options.
 
 <div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
@@ -19,13 +18,11 @@ and exposes most of the available options.
 
 ## Usage
 
-The style of the contextmenu can be modified through various properties
+This component can only be used with a list of `MenuItem` objects and a slot with no variations. Each menu item has the following properties:-
 
-### Sizes
-
-Size of the contextmenu can be controlled through this prop
-
-<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
-    <Story of={VariationsStories.Sizes} />
-</div>
-
+| Property   | Type         | Description                                                |
+| ---------- | ------------ | ---------------------------------------------------------- |
+| `label`    | `string`     | The item label to show in the menu                         |
+| `shortcut` | `string`     | Keyboard shortcut for menu. This is displayed to the right |
+| `action`   | `() => void` | The callback function on item click                        |
+| `children` | `MenuItem[]` | Array of child menu items                                  |

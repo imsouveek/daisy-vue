@@ -1,6 +1,5 @@
 import type { ComponentPropsAndSlots, Meta, StoryObj } from '@storybook/vue3-vite'
 import DaisyContextMenu from '../DaisyContextMenu.vue'
-import { sizes } from '../../../globals'
 
 export type DaisyContextMenuArgs = ComponentPropsAndSlots<typeof DaisyContextMenu> & {
     label?: string
@@ -8,17 +7,68 @@ export type DaisyContextMenuArgs = ComponentPropsAndSlots<typeof DaisyContextMen
 
 export type DaisyContextMenuMeta = Meta<DaisyContextMenuArgs>
 
+export const menuItems = [
+    {
+        label: 'Item 1',
+        shortcut: 'Ctrl + 1',
+        action: () => {
+            console.log('Item 1 clicked')
+        }
+    },
+    {
+        label: 'Item 2',
+        shortcut: 'Ctrl + 2',
+        action: () => {
+            console.log('Item 2 clicked')
+        },
+        children: [
+            {
+                label: 'Item 2.1',
+                shortcut: 'Alt + 1',
+                action: () => {
+                    console.log('Item 2.1 clicked')
+                }
+            },
+            {
+                label: 'Item 2.2',
+                action: () => {
+                    console.log('Item 2.2 clicked')
+                },
+                children: [
+                    {
+                        label: 'Item 2.2.1',
+                        shortcut: 'Ctrl + Alt + 1',
+                        action: () => {
+                            console.log('Item 2.2.1 clicked')
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        label: 'Item 3',
+        shortcut: 'Ctrl + 3',
+        action: () => {
+            console.log('Item 3 clicked')
+        }
+    }
+]
+
 export const getMeta = (): DaisyContextMenuMeta => ({
     title: 'Components/DaisyContextMenu',
     component: DaisyContextMenu,
     render: (args) => ({
         components: { DaisyContextMenu },
         setup() {
-            return { args }
+            return { args, menuItems }
         },
         template: `
             <div style="width: 896px;" class=" flex flex-col items-center">
-                <DaisyContextMenu v-bind="args" v-html="args.label" />
+                <DaisyContextMenu :items="menuItems" >
+                    <div>Some stuff going on here that needs a custom context menu.</div>
+                    <div>Right click me to see context menu</div>
+                </DaisyContextMenu>
             </div>
         `
     }),
@@ -28,24 +78,60 @@ export const getMeta = (): DaisyContextMenuMeta => ({
             codePanel: true,
             source: {
                 language: 'ts',
-                transform: (_, context) => {
-                    const { label, ...ContextMenuArgs } = context.args
-
-                    const renderedProps = Object.keys(ContextMenuArgs)
-                        .map((key) =>
-                            typeof ContextMenuArgs[key] === 'boolean'
-                                ? ContextMenuArgs[key] === true
-                                    ? key
-                                    : ''
-                                : `${key}="${ContextMenuArgs[key]}"`
-                        )
-                        .join(' ')
-                        .trim()
-
+                transform: () => {
                     return `
                         <template>
-                            <DaisyContextMenu${renderedProps ? ' ' + renderedProps : ''}>
-                                ${label}
+                            <DaisyContextMenu
+                                :items="[
+                                    {
+                                        label: 'Item 1',
+                                        shortcut: 'Ctrl + 1',
+                                        action: () => {
+                                            console.log('Item 1 clicked')
+                                        }
+                                    },
+                                    {
+                                        label: 'Item 2',
+                                        shortcut: 'Ctrl + 2',
+                                        action: () => {
+                                            console.log('Item 2 clicked')
+                                        },
+                                        children: [
+                                            {
+                                                label: 'Item 2.1',
+                                                shortcut: 'Alt + 1',
+                                                action: () => {
+                                                    console.log('Item 2.1 clicked')
+                                                }
+                                            },
+                                            {
+                                                label: 'Item 2.2',
+                                                action: () => {
+                                                    console.log('Item 2.2 clicked')
+                                                },
+                                                children: [
+                                                    {
+                                                        label: 'Item 2.2.1',
+                                                        shortcut: 'Ctrl + Alt + 1',
+                                                        action: () => {
+                                                            console.log('Item 2.2.1 clicked')
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Item 3',
+                                        shortcut: 'Ctrl + 3',
+                                        action: () => {
+                                            console.log('Item 3 clicked')
+                                        }
+                                    }
+                                ]"
+                            >
+                                <div>Some stuff going on here that needs a custom context menu.</div>
+                                <div>Right click me to see context menu</div>
                             </DaisyContextMenu>
                         </template>
                     `.trim()
@@ -54,18 +140,12 @@ export const getMeta = (): DaisyContextMenuMeta => ({
         }
     },
     argTypes: {
-        size: {
-            control: { type: 'select' },
-            options: sizes
-        },
-        label: {
-            control: 'text',
-            description: 'ContextMenu label'
+        items: {
+            control: false,
+            description: 'An array of menu items with nested child menu items'
         }
     },
-    args: {
-        label: 'TEST'
-    }
+    args: {}
 })
 
 export type DaisyContextMenuStory = StoryObj<DaisyContextMenuMeta>
