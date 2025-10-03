@@ -21,20 +21,24 @@ and exposes most of the available options.
 
 This component can only be used with a list of `MenuItem` objects and a slot with no variations. Each menu item has the following properties:-
 
-| Property   | Type         | Description                                                |
-| ---------- | ------------ | ---------------------------------------------------------- |
-| `label`    | `string`     | The item label to show in the menu                         |
-| `shortcut` | `string`     | Keyboard shortcut for menu. This is displayed to the right |
-| `action`   | `() => void` | The callback function on item click                        |
-| `children` | `MenuItem[]` | Array of child menu items                                  |
+| Property    | Type         | Description                                                |
+| ----------- | ------------ | ---------------------------------------------------------- |
+| `label`     | `string`     | The item label to show in the menu                         |
+| `shortcut`  | `string`     | Keyboard shortcut for menu. This is displayed to the right |
+| `action`    | `() => void` | The callback function on item click                        |
+| `header`    | `string`     | Heading to show before item                                |
+| `disabled`  | `boolean`    | Indicate if item is disabled (not clickable)               |
+| `separator` | `boolean`    | Indicate if a separator line is to be shown after item     |
+| `children`  | `MenuItem[]` | Array of child menu items                                  |
 
 ## Styling
 
 There are two options to style menus
 
-1. A class object can be passed to DaisyContextMenu and the class applies to the entire menu including sub-menus. This affects only one menu
-2. The menu surface and items can be styled using `data-context-menu-surface` and `data-context-menu-id` attributes. This will affect all menus
-   unless special care is taken to target specific menus (through the use of custom attributes or classes )
+- A class object can be passed to DaisyContextMenu and the class applies to the entire menu including sub-menus. This affects only one menu
+- The menu can be styled using `data-context-menu-surface`, `data-context-menu-id`, `data-context-menu-header` and `data-context-menu-separator`
+  attributes. Each attribute also takes an optional item id. This will affect all menus unless special care is taken to create unique item ids or
+  target specific menus (through the use of custom attributes or classes )
 
 <div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 bg-white dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={VariationsStories.Styling} />

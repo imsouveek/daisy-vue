@@ -11,9 +11,19 @@
     color: oklch(52.7% 0.154 150.069);
 }
 
-[data-demo-id='context_menu_styling_story_one_text'] [data-context-menu-id='item_3'] {
+[data-demo-id='context_menu_styling_story_one_text'] [data-context-menu-id='item_4'] {
     font-weight: 200;
     color: oklch(55.5% 0.163 48.998);
+}
+
+[data-demo-id='context_menu_styling_story_header'] [data-context-menu-header='item_2_1'] {
+    font-weight: 900;
+    color: red;
+}
+
+[data-demo-id='context_menu_styling_story_separator'] [data-context-menu-separator='item_3'] {
+    background-color: red;
+    height: 2px;
 }
 
 .menu-trigger {

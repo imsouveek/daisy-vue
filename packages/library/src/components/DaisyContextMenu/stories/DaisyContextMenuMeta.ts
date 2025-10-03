@@ -27,6 +27,7 @@ export const menuItems = [
             {
                 id: 'item_2_1',
                 label: 'Item 2.1',
+                header: 'Item 2 sub menu',
                 shortcut: 'Alt + 1',
                 action: () => {
                     console.log('Item 2.1 clicked')
@@ -55,8 +56,18 @@ export const menuItems = [
         id: 'item_3',
         label: 'Item 3',
         shortcut: 'Ctrl + 3',
+        disabled: true,
+        separator: true,
         action: () => {
             console.log('Item 3 clicked')
+        }
+    },
+    {
+        id: 'item_4',
+        label: 'Item 4',
+        shortcut: 'Ctrl + 4',
+        action: () => {
+            console.log('Item 4 clicked')
         }
     }
 ]
@@ -107,6 +118,7 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                             {
                                                 id: 'item_2_1',
                                                 label: 'Item 2.1',
+                                                header: 'Item 2 sub menu',
                                                 shortcut: 'Alt + 1',
                                                 action: () => {
                                                     console.log('Item 2.1 clicked')
@@ -134,6 +146,8 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                     {
                                         id: 'item_3',
                                         label: 'Item 3',
+                                        disabled: true,
+                                        separator: true
                                         shortcut: 'Ctrl + 3',
                                         action: () => {
                                             console.log('Item 3 clicked')

@@ -42,7 +42,17 @@ export const Styling: DaisyContextMenuStory = {
                     },
                     {
                         id: 'context_menu_styling_story_one_text',
-                        description: "Styling specific text with [data-context-menu-id='item-3']"
+                        description: "Styling specific text with [data-context-menu-id='item_4']"
+                    },
+                    {
+                        id: 'context_menu_styling_story_header',
+                        description:
+                            "Stying header with [data-context-menu-header] or [data-context-menu-header='item_2_1]"
+                    },
+                    {
+                        id: 'context_menu_styling_story_separator',
+                        description:
+                            "Stying header with [data-context-menu-separator] or [data-context-menu-separator='item_3]"
                     }
                 ]
             }

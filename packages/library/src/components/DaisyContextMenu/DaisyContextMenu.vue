@@ -9,9 +9,12 @@ import DaisyContextMenuList from './DaisyContextMenuList.vue'
 import { provide, useAttrs } from 'vue'
 
 export interface MenuItem {
+    header?: string
     id?: string
     label: string
     shortcut?: string
+    disabled?: boolean
+    separator?: boolean
     action?: () => void
     children?: MenuItem[]
 }
