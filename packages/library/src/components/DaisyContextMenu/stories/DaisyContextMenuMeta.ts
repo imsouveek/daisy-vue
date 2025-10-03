@@ -9,6 +9,7 @@ export type DaisyContextMenuMeta = Meta<DaisyContextMenuArgs>
 
 export const menuItems = [
     {
+        id: 'item_1',
         label: 'Item 1',
         shortcut: 'Ctrl + 1',
         action: () => {
@@ -16,6 +17,7 @@ export const menuItems = [
         }
     },
     {
+        id: 'item_2',
         label: 'Item 2',
         shortcut: 'Ctrl + 2',
         action: () => {
@@ -23,6 +25,7 @@ export const menuItems = [
         },
         children: [
             {
+                id: 'item_2_1',
                 label: 'Item 2.1',
                 shortcut: 'Alt + 1',
                 action: () => {
@@ -30,12 +33,14 @@ export const menuItems = [
                 }
             },
             {
+                id: 'item_2_2',
                 label: 'Item 2.2',
                 action: () => {
                     console.log('Item 2.2 clicked')
                 },
                 children: [
                     {
+                        id: 'item_2_2_1',
                         label: 'Item 2.2.1',
                         shortcut: 'Ctrl + Alt + 1',
                         action: () => {
@@ -47,6 +52,7 @@ export const menuItems = [
         ]
     },
     {
+        id: 'item_3',
         label: 'Item 3',
         shortcut: 'Ctrl + 3',
         action: () => {
@@ -54,7 +60,6 @@ export const menuItems = [
         }
     }
 ]
-
 export const getMeta = (): DaisyContextMenuMeta => ({
     title: 'Components/DaisyContextMenu',
     component: DaisyContextMenu,
@@ -84,6 +89,7 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                             <DaisyContextMenu
                                 :items="[
                                     {
+                                        id: 'item_1',
                                         label: 'Item 1',
                                         shortcut: 'Ctrl + 1',
                                         action: () => {
@@ -91,6 +97,7 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                         }
                                     },
                                     {
+                                        id: 'item_2',
                                         label: 'Item 2',
                                         shortcut: 'Ctrl + 2',
                                         action: () => {
@@ -98,6 +105,7 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                         },
                                         children: [
                                             {
+                                                id: 'item_2_1',
                                                 label: 'Item 2.1',
                                                 shortcut: 'Alt + 1',
                                                 action: () => {
@@ -105,12 +113,14 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                                 }
                                             },
                                             {
+                                                id: 'item_2_2',
                                                 label: 'Item 2.2',
                                                 action: () => {
                                                     console.log('Item 2.2 clicked')
                                                 },
                                                 children: [
                                                     {
+                                                        id: 'item_2_2_1',
                                                         label: 'Item 2.2.1',
                                                         shortcut: 'Ctrl + Alt + 1',
                                                         action: () => {
@@ -122,6 +132,7 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                         ]
                                     },
                                     {
+                                        id: 'item_3',
                                         label: 'Item 3',
                                         shortcut: 'Ctrl + 3',
                                         action: () => {

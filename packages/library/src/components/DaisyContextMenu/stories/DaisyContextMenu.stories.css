@@ -1,0 +1,23 @@
+[data-demo-id='context_menu_styling_story_all_surfaces'][data-context-menu-surface] {
+    background-color: oklch(70.7% 0.165 254.624);
+}
+
+[data-demo-id='context_menu_styling_story_one_surface'][data-context-menu-surface='item_2'] {
+    background-color: oklch(70.4% 0.191 22.216);
+}
+
+[data-demo-id='context_menu_styling_story_all_text'] [data-context-menu-id] {
+    font-weight: 700;
+    color: oklch(52.7% 0.154 150.069);
+}
+
+[data-demo-id='context_menu_styling_story_one_text'] [data-context-menu-id='item_3'] {
+    font-weight: 200;
+    color: oklch(55.5% 0.163 48.998);
+}
+
+.menu-trigger {
+    padding: 16px;
+    border-width: 2px;
+    border-style: dashed;
+}

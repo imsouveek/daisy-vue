@@ -6,7 +6,7 @@ defineProps<{ item: MenuItem }>()
 </script>
 
 <template>
-    <ContextMenuItem @select="item.action" class="flex items-center w-full">
+    <ContextMenuItem @select="item.action" class="flex items-center w-full" :data-context-menu-id="item.id">
         {{ item.label }}
         <div class="ml-auto">{{ item.shortcut }}</div>
     </ContextMenuItem>

@@ -1,5 +1,6 @@
 import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
 import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
 
 # DaisyContextMenu
 
@@ -9,7 +10,7 @@ A context menu component. This component
 uses the [Daisy UI ContextMenu component](https://daisyui.com/components/context-menu/)
 and exposes most of the available options.
 
-<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 bg-white dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
     <Story of={PrimaryStory.Playground} />
 </div>
 <Source of={PrimaryStory.Playground} />
@@ -26,3 +27,15 @@ This component can only be used with a list of `MenuItem` objects and a slot wit
 | `shortcut` | `string`     | Keyboard shortcut for menu. This is displayed to the right |
 | `action`   | `() => void` | The callback function on item click                        |
 | `children` | `MenuItem[]` | Array of child menu items                                  |
+
+## Styling
+
+There are two options to style menus
+
+1. A class object can be passed to DaisyContextMenu and the class applies to the entire menu including sub-menus. This affects only one menu
+2. The menu surface and items can be styled using `data-context-menu-surface` and `data-context-menu-id` attributes. This will affect all menus
+   unless special care is taken to target specific menus (through the use of custom attributes or classes )
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 bg-white dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Styling} />
+</div>
