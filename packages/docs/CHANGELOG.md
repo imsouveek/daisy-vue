@@ -1,5 +1,16 @@
 # docs
 
+## 3.2.0
+
+### Minor Changes
+
+- e61d41f: New DaisyContextMenu component
+
+### Patch Changes
+
+- Updated dependencies [e61d41f]
+    - daisy-vue@2.2.0
+
 ## 3.1.0
 
 ### Minor Changes

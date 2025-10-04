@@ -1,5 +1,11 @@
 # daisy-vue
 
+## 2.2.0
+
+### Minor Changes
+
+- e61d41f: New DaisyContextMenu component
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,43 +1,55 @@
 {
-  "hash": "27915a3c",
-  "configHash": "4b8e829a",
+  "hash": "d8e9649e",
+  "configHash": "6122318b",
   "lockfileHash": "2c32e57c",
-  "browserHash": "c8752ff9",
+  "browserHash": "f5a66ea7",
   "optimized": {
     "vue": {
       "src": "../../../../../node_modules/.pnpm/vue@3.5.20_typescript@5.9.2/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "314120d9",
+      "fileHash": "d7b39b4f",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../../node_modules/.pnpm/@vue+devtools-api@8.0.1/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "71ffdce9",
+      "fileHash": "213d80e6",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../../node_modules/.pnpm/@vueuse+core@13.8.0_vue@3.5.20_typescript@5.9.2_/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "c77585ca",
+      "fileHash": "1cd63603",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../../node_modules/.pnpm/@vueuse+integrations@13.8.0_change-case@5.4.4_focus-trap@7.6.5_fuse.js@7.1.0_jwt-decode_8da79c80dcbbe6081d38a6059314f01b/node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "886cda7d",
+      "fileHash": "83c29316",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../../node_modules/.pnpm/mark.js@8.11.1/node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "d5280ded",
+      "fileHash": "d706c4dd",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../../node_modules/.pnpm/minisearch@7.1.2/node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "36000b7c",
+      "fileHash": "3a477aa8",
+      "needsInterop": false
+    },
+    "radix-vue": {
+      "src": "../../../../../node_modules/.pnpm/radix-vue@1.9.17_vue@3.5.20_typescript@5.8.3_/node_modules/radix-vue/dist/index.js",
+      "file": "radix-vue.js",
+      "fileHash": "c0bc8fd4",
+      "needsInterop": false
+    },
+    "@iconify/vue": {
+      "src": "../../../../../node_modules/.pnpm/@iconify+vue@5.0.0_vue@3.5.20_typescript@5.8.3_/node_modules/@iconify/vue/dist/iconify.mjs",
+      "file": "@iconify_vue.js",
+      "fileHash": "3cba6856",
       "needsInterop": false
     }
   },

@@ -1,0 +1,47 @@
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+# DaisyContextMenu
+
+<Meta of={PrimaryStory} />
+
+A context menu component. This component
+uses the [Radix Vue ContextMenu component](https://www.radix-vue.com/components/context-menu.html)
+and exposes most of the available options.
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 bg-white dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+This component can only be used with a list of `MenuItem` objects and a slot with no variations. Each menu item has the following properties:-
+
+| Property    | Type         | Optional | Description                                                                     |
+| ----------- | ------------ | -------- | ------------------------------------------------------------------------------- |
+| `label`     | `string`     | No       | The item label to show in the menu                                              |
+| `shortcut`  | `string`     | Yes      | Keyboard shortcut displayed to the right. Does not work if item opens a submenu |
+| `action`    | `() => void` | Yes      | Callback function invoked when the item is clicked                              |
+| `header`    | `string`     | Yes      | Heading text displayed before the item                                          |
+| `disabled`  | `boolean`    | Yes      | Marks the item as disabled (non-clickable)                                      |
+| `separator` | `boolean`    | Yes      | Shows a separator line _after_ the item                                         |
+| `children`  | `MenuItem[]` | Yes      | Nested submenu items                                                            |
+
+## Styling
+
+There are two options to style menus
+
+- A class object can be passed to DaisyContextMenu and the class applies to the entire menu including sub-menus. This affects only one menu
+- The menu can be styled using `data-context-menu-surface`, `data-context-menu-id`, `data-context-menu-header` and `data-context-menu-separator`
+  attributes. Each attribute also takes an optional item id. This will affect all menus unless special care is taken to create unique item ids or
+  target specific menus (through the use of custom attributes or classes ).
+
+    Note: the top level surface has an `id` of `root`
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 bg-white dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Styling} />
+</div>
