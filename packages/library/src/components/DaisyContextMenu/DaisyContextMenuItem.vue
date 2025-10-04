@@ -7,7 +7,7 @@ defineProps<{ item: MenuItem }>()
 
 <template>
     <ContextMenuItem @select="item.action" class="flex items-center w-full" :class="{ 'opacity-50': item.disabled }"
-        :data-context-menu-id="item.id" :disabled="item.disabled">
+        :data-context-menu-id="item.id ?? ''" :disabled="item.disabled">
         {{ item.label }}
         <div class="ml-auto">{{ item.shortcut }}</div>
     </ContextMenuItem>

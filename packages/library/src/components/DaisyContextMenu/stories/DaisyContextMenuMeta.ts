@@ -20,6 +20,7 @@ export const menuItems = [
         id: 'item_2',
         label: 'Item 2',
         shortcut: 'Ctrl + 2',
+        separator: true,
         action: () => {
             console.log('Item 2 clicked')
         },
@@ -111,6 +112,7 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                         id: 'item_2',
                                         label: 'Item 2',
                                         shortcut: 'Ctrl + 2',
+                                        separator: true,
                                         action: () => {
                                             console.log('Item 2 clicked')
                                         },
@@ -147,10 +149,18 @@ export const getMeta = (): DaisyContextMenuMeta => ({
                                         id: 'item_3',
                                         label: 'Item 3',
                                         disabled: true,
-                                        separator: true
+                                        separator: true,
                                         shortcut: 'Ctrl + 3',
                                         action: () => {
                                             console.log('Item 3 clicked')
+                                        }
+                                    },
+                                    {
+                                        id: 'item_4',
+                                        label: 'Item 4',
+                                        shortcut: 'Ctrl + 4',
+                                        action: () => {
+                                            console.log('Item 4 clicked')
                                         }
                                     }
                                 ]"
