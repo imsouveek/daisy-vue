@@ -10,4 +10,5 @@
 - [Avatar](/components/avatar)
 - [AvatarGroup](/components/avatar-group)
 - [ContextMenu](/components/context-menu)
+- [Alert](/components/alert)
   <!--do not remove - used by hygen-->
