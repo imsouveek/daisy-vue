@@ -1,0 +1,47 @@
+import { Meta, Controls, Story, Source } from '@storybook/addon-docs/blocks'
+import * as PrimaryStory from './Playground.stories'
+import * as VariationsStories from './Variations.stories'
+
+# DaisyAlert
+
+<Meta of={PrimaryStory} />
+
+A alert component. This component
+uses the [Daisy UI Alert component](https://daisyui.com/components/alert/)
+and exposes most of the available options.
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={PrimaryStory.Playground} />
+</div>
+<Source of={PrimaryStory.Playground} />
+
+<Controls />
+
+## Usage
+
+The style of the alert can be modified through various properties
+
+### Types
+
+The type prop can be set which automatically applies a default icon and a color to the alert
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Types} />
+</div>
+
+# Variations
+
+Props can be set to control the appearance of the dismiss button as well as the style of display - soft / outline / dashed outline
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.Variants} />
+</div>
+
+# Full Custom mode
+
+The `full-custom` slot can be used for more control of alert functionality. Also, the 'alert-verical' class can be used for responsive display
+alert
+
+<div className="p-8 border-1 rounded border-gray-200 shadow-sm shadow-gray-200 dark:shadow-none dark:border-gray-800 dark:bg-slate-900">
+    <Story of={VariationsStories.FullCustom} />
+</div>
