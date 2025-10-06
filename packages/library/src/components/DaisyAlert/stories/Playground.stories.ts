@@ -7,6 +7,6 @@ export default {
 
 export const Playground: DaisyAlertStory = {
     args: {
-        label: '24'
+        content: 'This is a test'
     }
 }

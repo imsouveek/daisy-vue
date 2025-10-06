@@ -1,9 +1,9 @@
 import type { ComponentPropsAndSlots, Meta, StoryObj } from '@storybook/vue3-vite'
 import DaisyAlert from '../DaisyAlert.vue'
-import { sizes } from '../../../globals'
+import { states } from '../../../globals'
 
 export type DaisyAlertArgs = ComponentPropsAndSlots<typeof DaisyAlert> & {
-    label?: string
+    content?: string
 }
 
 export type DaisyAlertMeta = Meta<DaisyAlertArgs>
@@ -18,7 +18,9 @@ export const getMeta = (): DaisyAlertMeta => ({
         },
         template: `
             <div style="width: 896px;" class=" flex flex-col items-center">
-                <DaisyAlert v-bind="args" v-html="args.label" />
+                <DaisyAlert v-bind="args">
+                    <span>{{args.content}}</span>
+                </DaisyAlert>
             </div>
         `
     }),
@@ -29,7 +31,7 @@ export const getMeta = (): DaisyAlertMeta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { label, ...AlertArgs } = context.args
+                    const { content, ...AlertArgs } = context.args
 
                     const renderedProps = Object.keys(AlertArgs)
                         .map((key) =>
@@ -45,7 +47,7 @@ export const getMeta = (): DaisyAlertMeta => ({
                     return `
                         <template>
                             <DaisyAlert${renderedProps ? ' ' + renderedProps : ''}>
-                                ${label}
+                                ${content}
                             </DaisyAlert>
                         </template>
                     `.trim()
@@ -54,17 +56,21 @@ export const getMeta = (): DaisyAlertMeta => ({
         }
     },
     argTypes: {
-        size: {
-            control: { type: 'select' },
-            options: sizes
+        type: {
+            control: 'radio',
+            options: states
         },
-        label: {
+        dismissible: { control: 'boolean' },
+        soft: { control: 'boolean' },
+        outline: { control: 'boolean' },
+        dash: { control: 'boolean' },
+        content: {
             control: 'text',
-            description: 'Alert label'
+            description: 'Alert content'
         }
     },
     args: {
-        label: 'TEST'
+        content: 'This is a test alert'
     }
 })
 
