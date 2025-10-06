@@ -1,5 +1,16 @@
 # docs
 
+## 3.3.0
+
+### Minor Changes
+
+- a3dc278: New DaisyAlert component
+
+### Patch Changes
+
+- Updated dependencies [a3dc278]
+    - daisy-vue@2.3.0
+
 ## 3.2.0
 
 ### Minor Changes

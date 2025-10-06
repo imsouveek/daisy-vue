@@ -1,5 +1,11 @@
 # daisy-vue
 
+## 2.3.0
+
+### Minor Changes
+
+- a3dc278: New DaisyAlert component
+
 ## 2.2.0
 
 ### Minor Changes
