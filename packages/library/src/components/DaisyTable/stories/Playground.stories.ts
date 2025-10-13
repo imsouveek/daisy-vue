@@ -7,6 +7,6 @@ export default {
 
 export const Playground: DaisyTableStory = {
     args: {
-        label: '24'
+        size: 'md'
     }
 }

@@ -2,9 +2,94 @@ import type { ComponentPropsAndSlots, Meta, StoryObj } from '@storybook/vue3-vit
 import DaisyTable from '../DaisyTable.vue'
 import { sizes } from '../../../globals'
 
+export const tableData = [
+    {
+        name: 'Fern',
+        light: 'Low',
+        height: '20cm',
+        petFriendly: 'Yes',
+        price: 20
+    },
+    {
+        name: 'Snake Plant',
+        light: 'Low',
+        height: '50cm',
+        petFriendly: 'No',
+        price: 35
+    },
+    {
+        name: 'Monstera',
+        light: 'Medium',
+        height: '60cm',
+        petFriendly: 'No',
+        price: 50
+    },
+    {
+        name: 'Pothos',
+        light: 'Low to medium',
+        height: '40cm',
+        petFriendly: 'Yes',
+        price: 25
+    },
+    {
+        name: 'ZZ Plant',
+        light: 'Low to medium',
+        height: '90cm',
+        petFriendly: 'Yes',
+        price: 30
+    },
+    {
+        name: 'Spider Plant',
+        light: 'Bright, indirect',
+        height: '30cm',
+        petFriendly: 'Yes',
+        price: 15
+    },
+    {
+        name: 'Air Plant',
+        light: 'Bright, indirect',
+        height: '15cm',
+        petFriendly: 'Yes',
+        price: 10
+    },
+    {
+        name: 'Peperomia',
+        light: 'Bright, indirect',
+        height: '25cm',
+        petFriendly: 'Yes',
+        price: 20
+    },
+    {
+        name: 'Aloe Vera',
+        light: 'Bright, direct',
+        height: '30cm',
+        petFriendly: 'Yes',
+        price: 15
+    },
+    {
+        name: 'Jade Plant',
+        light: 'Bright, direct',
+        height: '40cm',
+        petFriendly: 'Yes',
+        price: 25
+    }
+]
+
+export const slotTypes = ['Default', 'Header', 'Column Header', 'Row', 'Column', undefined] as const
+export type SlotType = (typeof slotTypes)[number]
+
 export type DaisyTableArgs = ComponentPropsAndSlots<typeof DaisyTable> & {
-    label?: string
+    /** Type of slot used */
+    useSlot?: SlotType
+    /** Indicate if custom header prop is used */
+    useHeaderProp?: boolean
 }
+
+export const headers = [
+    { key: 'name', label: 'Plant Name' },
+    { key: 'petFriendly' },
+    { key: 'light', label: 'Sunlight' }
+]
 
 export type DaisyTableMeta = Meta<DaisyTableArgs>
 
@@ -14,11 +99,46 @@ export const getMeta = (): DaisyTableMeta => ({
     render: (args) => ({
         components: { DaisyTable },
         setup() {
-            return { args }
+            return {
+                args,
+                tableData,
+                headers
+            }
         },
         template: `
             <div style="width: 896px;" class=" flex flex-col items-center">
-                <DaisyTable v-bind="args" v-html="args.label" />
+                <DaisyTable v-bind="args" v-model="tableData" :headers="args.useHeaderProp? headers: undefined">
+                    <template #default="{data, headers}" v-if="args.useSlot=='Default'">
+                        <tr>
+                            <th v-for="header in headers" :key="header.key">
+                                {{header.label}}
+                            </th>
+                        </tr>
+                        <tr v-for="item in data" :key="item.name">
+                            <td v-for="key in Object.keys(item)" :key="key">
+                                {{item[key]}}
+                            </td>
+                        </tr>
+                    </template>
+                    <template #header="{headers}" v-if="args.useSlot=='Header'">
+                        <tr>
+                            <th v-for="header in headers" :key="header.key">
+                                {{header.label?.toUpperCase()}}
+                            </th>
+                        </tr>
+                    </template>
+                    <template #header.price v-if="args.useSlot=='Column Header'">
+                        $$
+                    </template>
+                    <template #item="{item}" v-if="args.useSlot == 'Row'">
+                        <td v-for="key in Object.keys(item)" :key="key">
+                            {{typeof item[key] === 'string' && key !== 'height'? item[key].toUpperCase(): item[key]}}
+                        </td>
+                    </template>
+                    <template #item.price="{itemValue}" v-if="args.useSlot == 'Column'">
+                        {{itemValue > 40? '$$$$$': itemValue < 25? '$': '$$$'}}
+                    </template>
+                </DaisyTable>
             </div>
         `
     }),
@@ -29,7 +149,7 @@ export const getMeta = (): DaisyTableMeta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { label, ...TableArgs } = context.args
+                    const { useHeaderProp, useSlot, ...TableArgs } = context.args
 
                     const renderedProps = Object.keys(TableArgs)
                         .map((key) =>
@@ -42,10 +162,72 @@ export const getMeta = (): DaisyTableMeta => ({
                         .join(' ')
                         .trim()
 
+                    let headersString = ''
+                    if (useHeaderProp) {
+                        const headers = [
+                            { key: 'name', label: 'Plant Name' },
+                            { key: 'petFriendly' },
+                            { key: 'light', label: 'Sunlight' }
+                        ]
+
+                        // convert to "pretty Vue-safe" JSON
+                        const jsonStr = JSON.stringify(headers, null, 2)
+                            .replace(/"([^"]+)":/g, '$1:') // remove quotes around keys
+                            .replace(/"/g, `'`) // use single quotes
+                            .trim()
+
+                        headersString = ` :headers="${jsonStr}"`
+                    }
+
+                    let slotString = ''
+                    if (useSlot == 'Default') {
+                        slotString = `
+                                <template #default="{data, headers}">
+                                    <tr>
+                                        <th v-for="header in headers" :key="header.key">
+                                            {{header.label}}
+                                        </th>
+                                    </tr>
+                                    <tr v-for="item in data" :key="item.name">
+                                        <td v-for="key in Object.keys(item)" :key="key">
+                                            {{item[key]}}
+                                        </td>
+                                    </tr>
+                                </template>`
+                    }
+                    if (useSlot == 'Header') {
+                        slotString = `
+                                <template #header="{headers}">
+                                    <tr>
+                                        <th v-for="header in headers" :key="header.key">
+                                            {{header.label?.toUpperCase()}}
+                                        </th>
+                                    </tr>
+                                </template>`
+                    }
+                    if (useSlot === 'Column Header') {
+                        slotString = `
+                                <template #header.price>
+                                    $$
+                                </template>`
+                    }
+                    if (useSlot === 'Row') {
+                        slotString = `
+                                <template #item="{item}">
+                                    <td v-for="key in Object.keys(item)" :key="key">
+                                        {{typeof item[key] === 'string' && key !== 'height'? item[key].toUpperCase(): item[key]}}
+                                    </td>
+                                </template>`
+                    }
+                    if (useSlot === 'Column') {
+                        slotString = `
+                                <template #item.price="{itemValue}">
+                                    {{itemValue > 40? '$$$$$': itemValue < 25? '$': '$$$'}}
+                                </template>`
+                    }
                     return `
                         <template>
-                            <DaisyTable${renderedProps ? ' ' + renderedProps : ''}>
-                                ${label}
+                            <DaisyTable${renderedProps ? ' ' + renderedProps : ''}${headersString}>${slotString}
                             </DaisyTable>
                         </template>
                     `.trim()
@@ -58,13 +240,17 @@ export const getMeta = (): DaisyTableMeta => ({
             control: { type: 'select' },
             options: sizes
         },
-        label: {
-            control: 'text',
-            description: 'Table label'
+        useSlot: {
+            control: { type: 'select' },
+            options: slotTypes
+        },
+        useHeaderProp: {
+            control: { type: 'boolean' }
         }
     },
     args: {
-        label: 'TEST'
+        size: 'md',
+        useSlot: undefined
     }
 })
 
