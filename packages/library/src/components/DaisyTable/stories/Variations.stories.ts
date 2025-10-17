@@ -3,7 +3,6 @@ import {
     tableData,
     headers,
     slotTypes,
-    type SlotType,
     type DaisyTableMeta,
     type DaisyTableStory
 } from './DaisyTableMeta'
