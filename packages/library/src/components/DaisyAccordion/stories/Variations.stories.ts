@@ -33,7 +33,7 @@ export const Icons: DaisyAccordionStory = {
         },
         template: `
       <div class="grid grid-cols-3 gap-8" style="width: 896px;">
-        <div v-for="icon in iconTypes" :key="icon">
+        <div v-for="icon in iconTypes" :key="icon" class="flex flex-col items-center pt-4 bg-base-200">
           <h4 class="mb-2">Icon: {{ icon?.toUpperCase() ?? 'UNDEFINED' }}</h4>
           <DaisyAccordion :icon="icon" v-bind="args">
             <DaisyAccordionPanel :title="args.panelOneTitle">{{args.panelOneContent}}</DaisyAccordionPanel>
@@ -68,7 +68,7 @@ export const OpenModes: DaisyAccordionStory = {
         },
         template: `
       <div class="grid grid-cols-2 gap-8" style="width: 896px;">
-        <div v-for="combo in combos" :key="combo.label">
+        <div v-for="combo in combos" :key="combo.label" class="flex flex-col items-center pt-4 bg-base-200">
           <h4 class="mb-2">{{ combo.label }}</h4>
           <DaisyAccordion :multipleOpen="combo.multipleOpen" :noneOpen="combo.noneOpen" v-bind="args">
             <DaisyAccordionPanel :title="args.panelOneTitle">{{args.panelOneContent}}</DaisyAccordionPanel>

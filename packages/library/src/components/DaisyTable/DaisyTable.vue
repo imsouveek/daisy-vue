@@ -123,7 +123,11 @@ const computedHeaders = computed<TableHeader[]>(() => {
             <tbody>
                 <tr v-for="item in data" :key="getRowKey(item)">
                     <slot name="item" :item="item" :headers="computedHeaders" :rowKey="getRowKey(item)">
-                        <td v-for="col in computedHeaders" :key="col.key">
+                        <td v-for="col in computedHeaders" :key="col.key" :style="{ width: col.width }" :class="{
+                            'text-left': col.align === 'left',
+                            'text-center': col.align === 'center',
+                            'text-right': col.align === 'right'
+                        }">
                             <slot :name="`item.${col.key}`" :rowKey="getRowKey(item)" :itemKey="col.key"
                                 :itemValue="item[col.key]">
                                 {{ item[col.key] }}
