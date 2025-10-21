@@ -230,6 +230,9 @@ export const getMeta = (): DaisyTableMeta => ({
             control: { type: 'select' },
             options: sizes
         },
+        striped: {
+            control: { type: 'boolean' }
+        },
         useSlot: {
             control: { type: 'select' },
             description: 'Type of slot used',
@@ -241,7 +244,7 @@ export const getMeta = (): DaisyTableMeta => ({
         }
     },
     args: {
-        size: 'md',
+        striped: false,
         useSlot: undefined
     }
 })
