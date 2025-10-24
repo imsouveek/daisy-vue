@@ -30,7 +30,10 @@ export default {
     }
 } as DaisyTableMeta
 
-function renderVariation(kind: 'size' | 'useSlot' | 'useHeaderProp' | 'sortable', values: any[]) {
+function renderVariation(
+    kind: 'size' | 'useSlot' | 'useHeaderProp' | 'sortable' | 'striped',
+    values: any[]
+) {
     return (args: DaisyTableMeta['args']) => ({
         components: { DaisyTable },
         setup() {
@@ -53,9 +56,9 @@ function renderVariation(kind: 'size' | 'useSlot' | 'useHeaderProp' | 'sortable'
         },
         template: `
         <div class="grid grid-cols-2 gap-4"  >
-            <div v-for="val in values" :key="val" class="flex flex-col items-center bg-base-200 p-2">
+            <div v-for="val in values" :key="val" class="flex flex-col items-center border border-dashed rounded border-base-content/20 p-2">
                 <h4 class="my-4" v-if="kind !== 'sortable'">{{ val ? val.toString().toUpperCase() : 'UNDEFINED' }}</h4>
-                <h4 class="my-4" v-else">{{ val.description.toUpperCase() }}</h4>
+                <h4 class="my-4" v-else>{{ val.description.toUpperCase() }}</h4>
                 <DaisyTable v-bind="{...args, [kind]: val}" v-model="data" :headers="kind === 'useHeaderProp' && val? headers: kind === 'sortable'? val.headers: undefined">
                     <template #default="{data, headers}" v-if="kind === 'useSlot' && val === 'Default'">
                         <tr>
@@ -101,6 +104,16 @@ export const Sizes: DaisyTableStory = {
         }
     },
     render: renderVariation('size', [...sizes] as DaisyTableMeta['args']['size'][])
+}
+
+export const StripedRows: DaisyTableStory = {
+    argTypes: {
+        ...srcArgTypes,
+        useHeaderProp: {
+            control: false
+        }
+    },
+    render: renderVariation('striped', [false, true] as DaisyTableMeta['args']['striped'][])
 }
 
 export const HeaderProperty: DaisyTableStory = {

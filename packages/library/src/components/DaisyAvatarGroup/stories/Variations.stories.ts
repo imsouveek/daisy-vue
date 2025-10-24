@@ -30,7 +30,7 @@ function renderVariation(kind: 'size' | 'mask', values: string[]) {
         },
         template: `
         <div class="grid grid-cols-2 gap-4"  >
-            <div v-for="val in values" :key="val" class="flex flex-col items-center bg-base-200">
+            <div v-for="val in values" :key="val" class="flex flex-col items-center border border-dashed rounded border-base-content/20 p-2">
                 <h4 class="my-4">{{val ? val.toUpperCase() : 'UNDEFINED' }}</h4>
                 <DaisyAvatarGroup v-bind="{...args, [kind]: val}">
                     <DaisyAvatar v-for="avatar in avatarSettings" :key="avatar" v-bind="avatar">
