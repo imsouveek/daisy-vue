@@ -14,6 +14,7 @@ interface TableHeader {
         order?: 'none' | 'ascending' | 'descending'
         sequence?: number
     }
+    comparator?: (a: any, b: any) => number
 }
 
 const props = withDefaults(defineProps<{
@@ -64,6 +65,17 @@ const getRowKey = (item: Record<string, any>) => hashRow(item)
 /***********************************************************************************/
 /* Working with Table Headers                                                      */
 /***********************************************************************************/
+const defaultComparator = (a: any, b: any): number => {
+    if (a === b) return 0
+
+    // Handle nullish values gracefully
+    if (a == null && b == null) return 0
+    if (a == null) return -1
+    if (b == null) return 1
+
+    return a > b ? 1 : -1
+}
+
 const defaultHeaders = () => {
     // fallback: derive headers from data keys
     const firstRow = data.value?.[0]
@@ -85,7 +97,8 @@ const defaultHeaders = () => {
         sort: {
             order: 'none',
             sequence: 0
-        }
+        },
+        comparator: defaultComparator
     })) as TableHeader[]
 }
 
@@ -98,6 +111,7 @@ watch(
                 width: 'auto',
                 sortable: true,
                 sort: { order: 'none', sequence: 0 },
+                comparator: defaultComparator,
                 ...h
             }))
         } else if (rows?.length) {
@@ -142,17 +156,15 @@ const sortedData = computed(() => {
         for (const col of active) {
             const key = col.key
             const order = col.sort!.order
-            const aVal = a[key]
-            const bVal = b[key]
-            if (aVal === bVal) continue
-            const res = aVal > bVal ? 1 : -1
+            const res = col.comparator(a[key], b[key])
+            if (res === 0) continue
             return order === 'ascending' ? res : -res
         }
         return 0
     })
 })
 
-function toggleSort(header: TableHeader) {
+const toggleSort = (header: TableHeader, event: MouseEvent) => {
     // determine next order
     const current = header.sort?.order ?? 'none'
     const nextOrder =
@@ -161,6 +173,23 @@ function toggleSort(header: TableHeader) {
             : current === 'ascending'
                 ? 'descending'
                 : 'none'
+
+    const isMeta = event.metaKey || event.ctrlKey
+    if (!isMeta) {
+        // clear all existing sorts first
+        normalizedHeaders.value.forEach(h => {
+            h.sort = { ...h.sort, order: 'none', sequence: 0 }
+        })
+
+        // apply new order for this column
+        if (nextOrder !== 'none') {
+            header.sort = { ...header.sort, order: nextOrder, sequence: 1 }
+        } else {
+            header.sort = { ...header.sort, order: 'none', sequence: 0 }
+        }
+
+        return
+    }
 
     // update order
     header.sort = { ...header.sort, order: nextOrder }
@@ -200,8 +229,9 @@ function toggleSort(header: TableHeader) {
                 <slot name="header" :headers="normalizedHeaders">
                     <tr>
                         <th v-for="col in normalizedHeaders" :key="col.key" :style="{ width: col.width }">
-                            <component :is="col.sortable ? 'button' : 'div'" @click="col.sortable && toggleSort(col)"
-                                class="flex gap-1 select-none w-full" :class="[{
+                            <component :is="col.sortable ? 'button' : 'div'"
+                                @click="col.sortable && toggleSort(col, $event)" class="flex gap-1 select-none w-full"
+                                :class="[{
                                     'cursor-pointer': col.sortable,
                                     'opacity-80': !col.sortable
                                 }, {

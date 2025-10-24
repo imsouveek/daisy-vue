@@ -1,7 +1,6 @@
 import {
     getMeta,
     tableData,
-    headers,
     slotTypes,
     type DaisyTableMeta,
     type DaisyTableStory
@@ -35,14 +34,18 @@ function renderVariation(kind: 'size' | 'useSlot' | 'useHeaderProp' | 'sortable'
     return (args: DaisyTableMeta['args']) => ({
         components: { DaisyTable },
         setup() {
-            const smallSample = tableData.slice(0, 4)
+            const smallSample = tableData.filter((_, i) => [0, 1, 6, 9].includes(i))
             const sample3Cols = smallSample.map((row) => {
                 return Object.fromEntries(Object.entries(row).slice(0, 4))
             })
             return {
                 args,
                 data: sample3Cols,
-                headers,
+                headers: [
+                    { key: 'name', label: 'Plant Name', align: 'right' },
+                    { key: 'petFriendly', width: '50%' },
+                    { key: 'light', label: 'Sunlight' }
+                ],
                 slotTypes,
                 kind,
                 values
@@ -137,13 +140,39 @@ export const SortFunction: DaisyTableStory = {
                 {
                     key: 'name',
                     label: 'Plant Name',
-                    sort: { order: 'descending', sequence: 1 }
+                    sort: { order: 'descending', sequence: 2 }
                 },
                 { key: 'petFriendly', label: 'Pet Friendly' },
                 {
                     key: 'light',
                     label: 'Sunlight',
-                    sort: { order: 'ascending', sequence: 2 }
+                    sort: { order: 'ascending', sequence: 1 }
+                }
+            ]
+        },
+        {
+            description: 'Custom comparator on Sunlight',
+            headers: [
+                {
+                    key: 'name',
+                    label: 'Plant Name'
+                },
+                { key: 'petFriendly', label: 'Pet Friendly' },
+                {
+                    key: 'light',
+                    label: 'Sunlight',
+                    comparator: (a: string, b: string): number => {
+                        const values = [
+                            'Low',
+                            'Low to medium',
+                            'Medium',
+                            'Bright, indirect',
+                            'Bright, direct'
+                        ]
+                        const aPos = values.indexOf(a)
+                        const bPos = values.indexOf(b)
+                        return aPos - bPos
+                    }
                 }
             ]
         },
@@ -154,14 +183,14 @@ export const SortFunction: DaisyTableStory = {
                     key: 'name',
                     label: 'Plant Name',
                     sortable: false,
-                    sort: { order: 'descending', sequence: 1 }
+                    sort: { order: 'descending', sequence: 2 }
                 },
                 { key: 'petFriendly', label: 'Pet Friendly', sortable: false },
                 {
                     key: 'light',
                     label: 'Sunlight',
                     sortable: false,
-                    sort: { order: 'ascending', sequence: 2 }
+                    sort: { order: 'ascending', sequence: 1 }
                 }
             ]
         }

@@ -83,10 +83,19 @@ export type DaisyTableArgs = ComponentPropsAndSlots<typeof DaisyTable> & {
     useHeaderProp?: boolean
 }
 
-export const headers = [
+const headers = [
     { key: 'name', label: 'Plant Name', align: 'right' },
     { key: 'petFriendly', width: '50%' },
-    { key: 'light', label: 'Sunlight' }
+    {
+        key: 'light',
+        label: 'Sunlight',
+        comparator: (a: string, b: string): number => {
+            const values = ['Low', 'Low to medium', 'Medium', 'Bright, indirect', 'Bright, direct']
+            const aPos = values.indexOf(a)
+            const bPos = values.indexOf(b)
+            return aPos - bPos
+        }
+    }
 ]
 
 export const slotStrings = {
