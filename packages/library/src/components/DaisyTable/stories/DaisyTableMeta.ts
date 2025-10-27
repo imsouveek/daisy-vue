@@ -1,6 +1,7 @@
 import type { ComponentPropsAndSlots, Meta, StoryObj } from '@storybook/vue3-vite'
 import DaisyTable from '../DaisyTable.vue'
 import { sizes } from '../../../globals'
+import './Variations.stories.css'
 
 export const tableData = [
     {
@@ -75,12 +76,23 @@ export const tableData = [
     }
 ]
 
-export const slotTypes = ['Default', 'Header', 'Column Header', 'Row', 'Column', undefined] as const
+export const slotTypes = [
+    'Default',
+    'Header',
+    'Column Header',
+    'Row',
+    'Column',
+    'Header Select',
+    'Item Select',
+    undefined
+] as const
 export type SlotType = (typeof slotTypes)[number]
 
 export type DaisyTableArgs = ComponentPropsAndSlots<typeof DaisyTable> & {
     useSlot?: SlotType
     useHeaderProp?: boolean
+    customHover?: boolean
+    customSelect?: boolean
 }
 
 const headers = [
@@ -101,40 +113,51 @@ const headers = [
 export const slotStrings = {
     undefined: '',
     Default: `
-                        <template #default="{data, headers}">
-                            <tr>
-                                <th v-for="header in headers" :key="header.key">
-                                    {{header.label}}
-                                </th>
-                            </tr>
-                            <tr v-for="item in data" :key="item.name">
-                                <td v-for="key in Object.keys(item)" :key="key">
-                                    {{item[key]}}
-                                </td>
-                            </tr>
-                        </template>`,
+            <template #default="{data, headers}">
+                <tr>
+                    <th v-for="header in headers" :key="header.key">
+                        {{header.label}}
+                    </th>
+                </tr>
+                <tr v-for="item in data" :key="item.name">
+                    <td v-for="key in Object.keys(item)" :key="key">
+                        {{item[key]}}
+                    </td>
+                </tr>
+            </template>`,
     Header: `
-                        <template #header="{headers}">
-                            <tr>
-                                <th v-for="header in headers" :key="header.key">
-                                    {{header.label?.toUpperCase()}}
-                                </th>
-                            </tr>
-                        </template>`,
+            <template #header="{headers}">
+                <tr>
+                    <th v-for="header in headers" :key="header.key">
+                        {{header.label?.toUpperCase()}}
+                    </th>
+                </tr>
+            </template>`,
     'Column Header': `
-                        <template #header.price>
-                            $$
-                        </template>`,
+            <template #header.price>
+                $$
+            </template>`,
     Row: `
-                        <template #item="{item}">
-                            <td v-for="key in Object.keys(item)" :key="key">
-                                {{typeof item[key] === 'string' && key !== 'height'? item[key].toUpperCase(): item[key]}}
-                            </td>
-                        </template>`,
+            <template #item="{item}">
+                <td v-for="key in Object.keys(item)" :key="key">
+                    {{typeof item[key] === 'string' && key !== 'height'? item[key].toUpperCase(): item[key]}}
+                </td>
+            </template>`,
     Column: `
-                        <template #item.price="{itemValue}">
-                            {{itemValue > 40? '$$$$$': itemValue < 25? '$': '$$$'}}
-                        </template>`
+            <template #item.price="{itemValue}">
+                {{itemValue > 40? '$$$$$': itemValue < 25? '$': '$$$'}}
+            </template>`,
+    'Header Select': `
+            <template #header.select="{selectType, selectAllFn, isAll}">
+                <button class='btn' @click="selectType === 'multi' && selectAllFn()" :class="isAll? 'btn-primary': 'btn-secondary'">
+                    All
+                </button>
+            </template>`,
+    'Item Select': `
+            <template #item.select>
+                <!-- Intentionally left blank -->
+                <span/>
+            </template>`
 }
 export type DaisyTableMeta = Meta<DaisyTableArgs>
 
@@ -151,7 +174,7 @@ export const getMeta = (): DaisyTableMeta => ({
             }
         },
         template: `
-            <div style="width: 896px;" class=" flex flex-col items-center">
+            <div style="width: 896px;" class=" flex flex-col items-center" :class="[{ ['custom-hover']: args.customHover }, { ['custom-select']: args.customSelect }]">
                 <DaisyTable v-bind="args" v-model="tableData" :headers="args.useHeaderProp? headers: undefined">
                     <template #default="{data, headers}" v-if="args.useSlot=='Default'">
                         <tr>
@@ -183,6 +206,15 @@ export const getMeta = (): DaisyTableMeta => ({
                     <template #item.price="{itemValue}" v-if="args.useSlot == 'Column'">
                         {{itemValue > 40? '$$$$$': itemValue < 25? '$': '$$$'}}
                     </template>
+                    <template #header.select="{selectType, selectAllFn, isAll}" v-if="args.useSlot == 'Header Select'">
+                        <button class='btn' @click="selectType === 'multi' && selectAllFn()" :class="isAll? 'btn-primary': 'btn-secondary'">
+                            All
+                        </button>
+                    </template>
+                    <template #item.select v-if="args.useSlot == 'Item Select'">
+                        <!-- Intentionally left blank -->
+                        <span/>
+                    </template>
                 </DaisyTable>
             </div>
         `
@@ -194,7 +226,8 @@ export const getMeta = (): DaisyTableMeta => ({
             source: {
                 language: 'ts',
                 transform: (_, context) => {
-                    const { useHeaderProp, useSlot, ...TableArgs } = context.args
+                    const { useHeaderProp, useSlot, customHover, customSelect, ...TableArgs } =
+                        context.args
 
                     const renderedProps = Object.keys(TableArgs)
                         .map((key) =>
@@ -223,13 +256,38 @@ export const getMeta = (): DaisyTableMeta => ({
                         slotString = `/>`
                     } else {
                         slotString = `>${slotString}
-                    </DaisyTable>`
+        </DaisyTable>`
                     }
-                    return `
+
+                    let styleString = ''
+                    if (customHover) {
+                        styleString = `
+    .tableHover:hover {
+        @apply bg-accent/50 text-accent-content;
+    }
+    `
+                    }
+                    if (customSelect) {
+                        styleString =
+                            styleString +
+                            `
+    .tableSelect {
+        @apply bg-secondary/50 text-secondary-content;
+    }
+    `
+                    }
+                    if (styleString) {
+                        styleString = `
+    <style scoped>${styleString}</style>`
+                    }
+
+                    return (
+                        `
                         <template>
-                    <DaisyTable v-model="tableData"${renderedProps ? ' ' + renderedProps : ''}${headersString}${slotString}
-                </template>
-                    `.trim()
+        <DaisyTable v-model="tableData"${renderedProps ? ' ' + renderedProps : ''}${headersString}${slotString}
+    </template>
+                    ` + styleString
+                    ).trim()
                 }
             }
         }
@@ -242,6 +300,15 @@ export const getMeta = (): DaisyTableMeta => ({
         striped: {
             control: { type: 'boolean' }
         },
+        selectable: {
+            control: { type: 'radio' }
+        },
+        rowClick: {
+            control: { type: 'boolean' }
+        },
+        hover: {
+            control: { type: 'boolean' }
+        },
         useSlot: {
             control: { type: 'select' },
             description: 'Type of slot used',
@@ -250,11 +317,22 @@ export const getMeta = (): DaisyTableMeta => ({
         useHeaderProp: {
             control: { type: 'boolean' },
             description: 'Indicate if custom header prop is used'
+        },
+        customHover: {
+            control: { type: 'boolean' },
+            description: 'Apply custom hover effect'
+        },
+        customSelect: {
+            control: { type: 'boolean' },
+            description: 'Apply custom row selection effect'
         }
     },
     args: {
         striped: false,
-        useSlot: undefined
+        useSlot: undefined,
+        selectable: 'no',
+        customHover: false,
+        customSelect: false
     }
 })
 

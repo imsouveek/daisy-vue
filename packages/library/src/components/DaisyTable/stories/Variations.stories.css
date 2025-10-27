@@ -1,0 +1,11 @@
+@reference "../../../assets/main.css";
+
+/* Distinct accent hover color for Storybook demos */
+.custom-hover .tableHover:hover {
+    @apply bg-accent/50 text-accent-content;
+}
+
+/* Keep selected row visible */
+.custom-select .tableSelect {
+    @apply bg-secondary/50 text-secondary-content;
+}

@@ -24,15 +24,26 @@ const props = withDefaults(defineProps<{
     headers?: TableHeader[],
     /** Show striped rows */
     striped?: boolean
+    /** Allow row selection */
+    selectable?: 'no' | 'one' | 'multi'
+    /** Allow selection based on row click. Override table-select CSS class for applying styling */
+    rowClick?: boolean
+    /** Show hover effect. Override table-hover CSS class for applying styling */
+    hover?: boolean
 }>(), {
     size: 'md',
     headers: undefined,
-    striped: false
+    striped: false,
+    selectable: 'no',
+    rowClick: true,
+    hover: true
 })
 
 const rawData = defineModel<Record<string, any>[]>({ required: true })
 const data = ref(rawData.value ?? [])
 const normalizedHeaders = ref<TableHeader[]>([])
+const selected = defineModel<Record<string, any>[]>('selected')
+const isAllSelected = ref<boolean>(false)
 
 /***********************************************************************************/
 /* Working with Table Data                                                         */
@@ -133,6 +144,22 @@ const sizeClass = computed(() => {
     }[props.size]
 })
 
+const selectionClasses = computed(() => {
+    if (props.selectable === 'no') return ''
+    if (props.selectable === 'one') return {
+        xs: 'radio radio-xs',
+        sm: 'radio radio-sm',
+        md: 'radio radio-md',
+        lg: 'radio radio-lg'
+    }[props.size]
+    return {
+        xs: 'checkbox checkbox-xs',
+        sm: 'checkbox checkbox-sm',
+        md: 'checkbox checkbox-md',
+        lg: 'checkbox checkbox-lg'
+    }[props.size]
+})
+
 const zebraClass = computed(() => props.striped ? 'table-zebra' : '')
 
 const classes = computed(() => {
@@ -220,6 +247,65 @@ const toggleSort = (header: TableHeader, event: MouseEvent) => {
     })
 }
 
+/***********************************************************************************/
+/* Table Row Selection                                                             */
+/***********************************************************************************/
+watch(
+    () => props.selectable,
+    (newMode, oldMode) => {
+        // if mode changes, clear existing selection
+        if (newMode !== oldMode) {
+            selected.value = []
+            isAllSelected.value = false
+        }
+    }
+)
+
+const isIndeterminate = computed(() => {
+    if (props.selectable !== 'multi') return false
+    const total = data.value.length
+    const selectedCount = selected.value?.length ?? 0
+    return selectedCount > 0 && selectedCount < total
+})
+
+const isSelected = (item: Record<string, any>) => {
+    const key = getRowKey(item)
+    return (selected.value ?? []).some(i => getRowKey(i) === key)
+}
+
+function toggleSelect(item: Record<string, any>) {
+    if (props.selectable === 'no') return
+
+    if (props.selectable === 'one') {
+        selected.value = [item]
+        return
+    }
+
+    // multi-select mode
+    const key = getRowKey(item)
+    const exists = (selected.value ?? []).some(i => getRowKey(i) === key)
+
+    if (exists) {
+        selected.value = (selected.value ?? []).filter(i => getRowKey(i) !== key)
+    } else {
+        selected.value = [...(selected.value ?? []), item]
+    }
+
+    // update header checkbox state
+    isAllSelected.value = selected.value?.length === data.value?.length
+}
+
+function selectAll() {
+    if (props.selectable !== 'multi') return
+
+    if (isAllSelected.value) {
+        selected.value = []
+        isAllSelected.value = false
+    } else {
+        selected.value = [...data.value]
+        isAllSelected.value = true
+    }
+}
 </script>
 
 <template>
@@ -228,6 +314,14 @@ const toggleSort = (header: TableHeader, event: MouseEvent) => {
             <thead>
                 <slot name="header" :headers="normalizedHeaders">
                     <tr>
+                        <th v-if="selectable !== 'no'">
+                            <slot name="header.select" :select-type="selectable" :select-all-fn="selectAll"
+                                :is-all="isAllSelected" :is-indeterminate="isIndeterminate">
+                                <input v-if="selectable === 'multi'" type="checkbox" @click="selectAll"
+                                    :checked="isAllSelected" :class="selectionClasses"
+                                    :indeterminate="isIndeterminate" />
+                            </slot>
+                        </th>
                         <th v-for="col in normalizedHeaders" :key="col.key" :style="{ width: col.width }">
                             <component :is="col.sortable ? 'button' : 'div'"
                                 @click="col.sortable && toggleSort(col, $event)" class="flex gap-1 select-none w-full"
@@ -257,8 +351,19 @@ const toggleSort = (header: TableHeader, event: MouseEvent) => {
                 </slot>
             </thead>
             <tbody>
-                <tr v-for="item in sortedData" :key="getRowKey(item)">
-                    <slot name="item" :item="item" :headers="normalizedHeaders" :rowKey="getRowKey(item)">
+                <tr v-for="item in sortedData" :key="getRowKey(item)"
+                    @click="selectable !== 'no' && rowClick && toggleSelect(item)" :class="[
+                        { tableHover: hover, tableSelect: isSelected(item) },
+                        rowClick && 'cursor-pointer'
+                    ]">
+                    <td v-if="selectable !== 'no'">
+                        <slot name="item.select" :select-type="selectable" :toggle-fn="toggleSelect">
+                            <input :type="selectable === 'multi' ? 'checkbox' : 'radio'" @click="toggleSelect(item)"
+                                :value="item" :class="selectionClasses" :checked="isSelected(item)" />
+                        </slot>
+                    </td>
+                    <slot name="item" :item="item" :headers="normalizedHeaders" :rowKey="getRowKey(item)"
+                        :toggle-fn="toggleSelect">
                         <td v-for="col in normalizedHeaders" :key="col.key" :style="{ width: col.width }" :class="{
                             'text-left': col.align === 'left',
                             'text-center': col.align === 'center',
@@ -275,3 +380,15 @@ const toggleSort = (header: TableHeader, event: MouseEvent) => {
         </slot>
     </table>
 </template>
+
+<style>
+@reference "../../assets/main.css";
+
+.tableHover {
+    @apply transition duration-500 hover:bg-base-content/10;
+}
+
+.tableSelect {
+    @apply bg-base-content/10;
+}
+</style>
