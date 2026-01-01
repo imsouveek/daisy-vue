@@ -45,6 +45,7 @@ export default defineConfig({
           { text: 'AvatarGroup', link: '/components/avatar-group' },
           { text: 'ContextMenu', link: '/components/context-menu' },
           { text: 'Alert', link: '/components/alert' },
+          { text: 'Rating', link: '/components/rating' },
           // do not remove - used by hygen
         ]
             }

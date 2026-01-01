@@ -47,7 +47,7 @@ export const AllMasks: VMaskStory = {
                         <div>{{ mod ?? 'undefined'}}</div>
                         <img v-mask:[mod]="mask" class="col-span-2" src="https://picsum.photos/300/300" />
                     </div>
-                </div>                    
+                </div>
             </div>
         </div>
         `

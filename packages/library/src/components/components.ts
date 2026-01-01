@@ -11,6 +11,7 @@ import DaisyAvatar from './DaisyAvatar/DaisyAvatar.vue'
 import DaisyAvatarGroup from './DaisyAvatarGroup/DaisyAvatarGroup.vue'
 import DaisyContextMenu from './DaisyContextMenu/DaisyContextMenu.vue'
 import DaisyAlert from './DaisyAlert/DaisyAlert.vue'
+import DaisyRating from './DaisyRating/DaisyRating.vue'
 // import - do not remove this line, used for hygen generations
 
 // ignore removal of traling comma by prettier so hygen can add new imports
@@ -29,5 +30,6 @@ export {
   DaisyAvatarGroup,
   DaisyContextMenu,
   DaisyAlert,
+  DaisyRating,
   // export - do not remove this line, used for hygen generations
 }
